@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="530.0" prefWidth="784.0" style="-fx-background-color: #4d4545;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="marianspos.DashBoardController">
+    <stylesheets>
+        <URL value="@dashboard.css" />
+    </stylesheets>
+   <children>
+      <Pane prefHeight="73.0" prefWidth="784.0" style="-fx-background-color: #393232;">
+         <children>
+            <Label alignment="CENTER" layoutX="251.0" layoutY="14.0" prefHeight="13.0" prefWidth="283.0" text="Marian's Pares, Bulalo, atbp." textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Roboto Black" size="21.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="251.0" layoutY="36.0" prefHeight="25.0" prefWidth="283.0" styleClass="date_TextField" text="12/09/2019" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Roboto" size="18.0" />
+               </font>
+            </Label>
+            <Button layoutX="592.0" layoutY="20.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="178.0" styleClass="logOut_Btn" text="Log Out" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Roboto" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Button layoutX="21.0" layoutY="377.0" mnemonicParsing="false" onAction="#POS_Btn" prefHeight="33.0" prefWidth="178.0" styleClass="POS_Btn" text="Point Of Sales" textFill="WHITE">
+         <font>
+            <Font name="Roboto" size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="585.0" layoutY="377.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="178.0" styleClass="accMgm_Btn" text="Accounts Management" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="Roboto" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="397.0" layoutY="377.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="178.0" styleClass="salesReport_Btn" text="Sales Report" textFill="WHITE">
+         <font>
+            <Font name="Roboto" size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="209.0" layoutY="377.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="178.0" styleClass="inv_Btn" text="Inventory" textFill="WHITE">
+         <font>
+            <Font name="Roboto" size="16.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="150.0" fitWidth="178.0" layoutX="35.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons-images/pos.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="223.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons-images/inventory.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="429.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons-images/sale-report.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="618.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons-images/shield.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

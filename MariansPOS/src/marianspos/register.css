@@ -1,0 +1,16 @@
+.username_textField, .name_textField, .password_textField, .repassword_textField {
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #ffffff,    #393232 ;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0 ;
+    -fx-color: #ffffff;
+}
+.username_textField:focused, .name_textField:focused, .password_textField:focused, .repassword_textField:focused {
+    -fx-background-insets: 0, 0 0 2 0 ;
+    -fx-background-color: #ffffff,   #393232 ;
+}
+
+.register_Btn{
+    -fx-background-radius: 0 ;
+    -fx-background-color: #ed8d8d;
+}

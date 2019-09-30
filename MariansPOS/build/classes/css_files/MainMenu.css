@@ -1,0 +1,33 @@
+.username_textField {
+    -fx-text-fill: #edf5e1;
+    -fx-background-color: #edf5e1,  #379683 ;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0 ;
+    -fx-color: #edf5e1;
+}
+.username_textField:focused {
+    -fx-background-insets: 0, 0 0 2 0 ;
+    -fx-background-color: #edf5e1, #379683 ;
+}
+
+.password_textField {
+    -fx-text-fill: #edf5e1;
+    -fx-background-color: #edf5e1,  #379683 ;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0 ;
+    -fx-color: #edf5e1;
+}
+.password_textField:focused {
+    -fx-background-insets: 0, 0 0 2 0 ;
+    -fx-background-color: #edf5e1, #379683 ;
+}
+
+.logIn_Btn{
+    -fx-background-radius: 0 ;
+    -fx-background-color: #05386B;
+}
+
+.register_Btn{
+    -fx-background-radius: 0 ;
+    -fx-background-color: #05386B;
+}
