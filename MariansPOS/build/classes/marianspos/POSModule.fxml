@@ -10,6 +10,6 @@
     </stylesheets>
    <children>
       <Pane prefHeight="650.0" prefWidth="333.0" style="-fx-background-color: #8d6262;" />
-      <Pane layoutX="333.0" prefHeight="147.0" prefWidth="950.0" style="-fx-background-color: #4d4545;" />
+      <Pane layoutX="333.0" prefHeight="147.0" prefWidth="947.0" style="-fx-background-color: #4d4545;" />
    </children>
 </AnchorPane>

@@ -14,22 +14,18 @@
 
 <AnchorPane id="AnchorPane" prefHeight="559.0" prefWidth="400.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="marianspos.RegisterController">
     <stylesheets>
-        <URL value="@/css_files/register.css" />
+        <URL value="@register.css" />
     </stylesheets>
    <children>
       <Pane prefHeight="563.0" prefWidth="400.0" style="-fx-background-color: #393232;" styleClass="password_TextField" stylesheets="@register.css">
          <children>
-            <TextField layoutX="25.0" layoutY="91.0" prefHeight="35.0" prefWidth="351.0" styleClass="name_textField">
+            <TextField layoutX="25.0" layoutY="91.0" prefHeight="35.0" prefWidth="351.0" styleClass="name_textField" stylesheets="@register.css">
                <font>
                   <Font name="Roboto" size="18.0" />
                </font>
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
-               <stylesheets>
-                  <URL value="@MainMenu.css" />
-                  <URL value="@register.css" />
-               </stylesheets>
             </TextField>
             <TextField layoutX="25.0" layoutY="171.0" prefHeight="35.0" prefWidth="351.0" styleClass="username_textField" stylesheets="@register.css">
                <font>

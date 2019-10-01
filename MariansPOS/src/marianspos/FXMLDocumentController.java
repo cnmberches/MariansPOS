@@ -30,7 +30,8 @@ public class FXMLDocumentController implements Initializable {
     private TextField username_TextField;
     
     @FXML
-    private void register(ActionEvent event) throws IOException {
+    private void register(ActionEvent event) throws IOException
+    {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Register.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();

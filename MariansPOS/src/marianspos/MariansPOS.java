@@ -24,7 +24,7 @@ public class MariansPOS extends Application {
         mainMenu = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         this.stage = stage;
         Scene scene = new Scene(mainMenu);
-        scene.getStylesheets().add("css_files/MainMenu.css");
+        scene.getStylesheets().add("MainMenu.css");
         this.stage.setResizable(false);
         this.stage.sizeToScene();
         this.stage.setTitle("Maria's Point of Sales System");
