@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
@@ -24,14 +25,14 @@ public class MariansPOS extends Application {
         mainMenu = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         this.stage = stage;
         Scene scene = new Scene(mainMenu);
-        scene.getStylesheets().add("MainMenu.css");
+        scene.getStylesheets().add("marianspos/MainMenu.css");
         this.stage.setResizable(false);
         this.stage.sizeToScene();
+        this.stage.initStyle(StageStyle.UNDECORATED);
         this.stage.setTitle("Maria's Point of Sales System");
         this.stage.setScene(scene);
         this.stage.show();
     }
-
     /**
      * @param args the command line arguments
      */

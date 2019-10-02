@@ -1,9 +1,4 @@
 .POS_Btn, .salesReport_Btn, .accMgm_Btn, .inv_Btn{
     -fx-background-radius: 0 ;
-    -fx-background-color: #ed8d8d;
-}
-
-.logOut_Btn{
-    -fx-background-radius: 0 ;
-    -fx-background-color: #8d6262;
+    -fx-background-color: #FF5722;
 }
