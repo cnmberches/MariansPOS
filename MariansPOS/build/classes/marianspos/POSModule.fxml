@@ -4,12 +4,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1280.0" style="-fx-background-color: #393232;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="marianspos.POSModuleController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1280.0" style="-fx-background-color: #fff; -fx-border-color: #bdbdbd;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="marianspos.POSModuleController">
     <stylesheets>
         <URL value="@posmodule.css" />
     </stylesheets>
    <children>
-      <Pane prefHeight="650.0" prefWidth="333.0" style="-fx-background-color: #8d6262;" />
-      <Pane layoutX="333.0" prefHeight="147.0" prefWidth="947.0" style="-fx-background-color: #4d4545;" />
+      <Pane layoutX="-4.0" prefHeight="650.0" prefWidth="337.0" style="-fx-background-color: #795548;" />
+      <Pane layoutX="332.0" prefHeight="147.0" prefWidth="949.0" style="-fx-background-color: #D7CCC8;" />
    </children>
 </AnchorPane>

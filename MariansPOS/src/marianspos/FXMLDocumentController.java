@@ -29,12 +29,6 @@ public class FXMLDocumentController implements Initializable
     private double yOffset = 0;
     
     @FXML
-    private TextField username_TextField;
-    
-    @FXML
-    private Button exit_btn, min_btn;
-    
-    @FXML
     private void exit(ActionEvent e) throws IOException 
     {
         final Node source = (Node) e.getSource();

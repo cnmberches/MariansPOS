@@ -22,7 +22,17 @@
                   <Font name="Roboto Black" size="21.0" />
                </font>
             </Label>
-            <Label alignment="BOTTOM_LEFT" layoutX="14.0" layoutY="35.0" prefHeight="25.0" prefWidth="265.0" styleClass="date_TextField" text="12/09/2019" textFill="WHITE" wrapText="true">
+            <Label id="date_lbl" fx:id="date_lbl" alignment="CENTER_RIGHT" layoutX="509.0" layoutY="13.0" prefHeight="25.0" prefWidth="265.0" text="12/09/2019" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Roboto" size="18.0" />
+               </font>
+            </Label>
+            <Label id="time_lbl" fx:id="time_lbl" alignment="CENTER_RIGHT" layoutX="509.0" layoutY="35.0" prefHeight="25.0" prefWidth="265.0" text="Time" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Roboto" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="cashier_lbl" layoutX="14.0" layoutY="35.0" prefHeight="25.0" prefWidth="265.0" text="Cashier: " textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Roboto" size="18.0" />
                </font>
