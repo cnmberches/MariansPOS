@@ -86,7 +86,7 @@
                         <Font name="Roboto" size="16.0" />
                      </font>
                   </RadioButton>
-                  <Label layoutX="14.0" layoutY="4.0" text="User type" textFill="WHITE">
+                  <Label layoutX="14.0" layoutY="4.0" text="Role">
                      <font>
                         <Font name="Roboto" size="16.0" />
                      </font>
@@ -95,7 +95,7 @@
             </Pane>
             <Pane onMouseDragged="#onMouseDragged" onMousePressed="#onMousePressed" prefHeight="35.0" prefWidth="400.0" style="-fx-background-color: #5D4037;" styleClass="bar">
                <children>
-                  <Label layoutX="14.0" layoutY="5.0" text="Register" textFill="WHITE">
+                  <Label layoutX="14.0" layoutY="9.0" text="Register" textFill="WHITE">
                      <font>
                         <Font name="Roboto" size="14.0" />
                      </font>

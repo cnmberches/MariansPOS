@@ -25,12 +25,14 @@ import javafx.stage.StageStyle;
 
 public class FXMLDocumentController implements Initializable
 {
+    //Initialize value of position
     private double xOffset = 0;
     private double yOffset = 0;
     
     @FXML
     private void exit(ActionEvent e) throws IOException 
     {
+        //Close the module
         final Node source = (Node) e.getSource();
         final Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
@@ -39,6 +41,7 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void minimize(ActionEvent e) throws IOException 
     {
+        //Minimize the module
         final Node source = (Node) e.getSource();
         final Stage stage = (Stage) source.getScene().getWindow();
         stage.setIconified(true);;
@@ -47,6 +50,7 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void register(ActionEvent event) throws IOException
     {
+        //Open register module
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Register.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
@@ -58,11 +62,13 @@ public class FXMLDocumentController implements Initializable
         stage.setScene(new Scene(root1));  
         stage.show();
         MariansPOS.stage.close();
+        new DBConnector().getConnection();
     }
     
     @FXML
     private void logIn(ActionEvent event) throws IOException
     {
+        //Open logIn Module
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DashBoard.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
@@ -78,6 +84,7 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void onMousePressed(MouseEvent event) throws IOException
     {
+        //FOr getting the position of window when the bar is clicked
         xOffset = event.getSceneX();
         yOffset = event.getSceneY();
     }
@@ -85,11 +92,12 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void onMouseDragged(MouseEvent event) throws IOException
     {
+        //For dragging the window 
         final Node source = (Node) event.getSource();
         final Stage stage = (Stage) source.getScene().getWindow();
         stage.setX(event.getScreenX() - xOffset);
         stage.setY(event.getScreenY() - yOffset);
-    }
+    }      
     
     @Override
     public void initialize(URL url, ResourceBundle rb)
