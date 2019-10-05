@@ -12,14 +12,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="559.0" prefWidth="400.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="marianspos.RegisterController">
+<AnchorPane id="AnchorPane" prefHeight="516.0" prefWidth="400.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="marianspos.RegisterController">
     <stylesheets>
         <URL value="@register.css" />
     </stylesheets>
    <children>
-      <Pane prefHeight="563.0" prefWidth="400.0" style="-fx-background-color: #fff; -fx-border-color: #bdbdbd;" styleClass="password_TextField" stylesheets="@register.css">
+      <Pane prefHeight="550.0" prefWidth="400.0" style="-fx-background-color: #fff; -fx-border-color: #bdbdbd;" styleClass="password_TextField" stylesheets="@register.css">
          <children>
-            <TextField layoutX="25.0" layoutY="91.0" prefHeight="35.0" prefWidth="351.0" styleClass="name_textField" stylesheets="@register.css">
+            <TextField layoutX="25.0" layoutY="66.0" prefHeight="35.0" prefWidth="351.0" styleClass="name_textField" stylesheets="@register.css">
                <font>
                   <Font name="Roboto" size="18.0" />
                </font>
@@ -27,7 +27,7 @@
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <TextField layoutX="25.0" layoutY="171.0" prefHeight="35.0" prefWidth="351.0" styleClass="username_textField" stylesheets="@register.css">
+            <TextField layoutX="25.0" layoutY="146.0" prefHeight="35.0" prefWidth="351.0" styleClass="username_textField" stylesheets="@register.css">
                <font>
                   <Font name="Roboto" size="18.0" />
                </font>
@@ -35,43 +35,43 @@
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <PasswordField layoutX="29.0" layoutY="258.0" prefHeight="35.0" prefWidth="351.0" styleClass="password_textField" stylesheets="@register.css">
+            <PasswordField layoutX="29.0" layoutY="233.0" prefHeight="35.0" prefWidth="351.0" styleClass="password_textField" stylesheets="@register.css">
                <font>
                   <Font name="Roboto" size="18.0" />
                </font>
             </PasswordField>
-            <Label layoutX="29.0" layoutY="61.0" text="Name">
+            <Label layoutX="29.0" layoutY="36.0" text="Name">
                <font>
                   <Font name="Roboto" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="29.0" layoutY="141.0" text="Username">
+            <Label layoutX="29.0" layoutY="116.0" text="Username">
                <font>
                   <Font name="Roboto" size="16.0" />
                </font>
             </Label>
             
-            <Label layoutX="27.0" layoutY="226.0" text="Password">
+            <Label layoutX="27.0" layoutY="201.0" text="Password">
                <font>
                   <Font name="Roboto" size="16.0" />
                </font>
             </Label>
-            <PasswordField layoutX="29.0" layoutY="344.0" prefHeight="35.0" prefWidth="351.0" styleClass="repassword_textField" stylesheets="@register.css">
+            <PasswordField layoutX="29.0" layoutY="319.0" prefHeight="35.0" prefWidth="351.0" styleClass="repassword_textField" stylesheets="@register.css">
                <font>
                   <Font name="Roboto" size="18.0" />
                </font>
             </PasswordField>
-            <Label layoutX="29.0" layoutY="314.0" text="Re-type Password">
+            <Label layoutX="29.0" layoutY="289.0" text="Re-type Password">
                <font>
                   <Font name="Roboto" size="16.0" />
                </font>
             </Label>
-            <Button layoutX="20.0" layoutY="508.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="360.0" styleClass="register_Btn" stylesheets="@register.css" text="Register" textFill="WHITE">
+            <Button layoutX="20.0" layoutY="483.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="360.0" styleClass="register_Btn" stylesheets="@register.css" text="Register" textFill="WHITE">
                <font>
                   <Font name="Roboto" size="14.0" />
                </font>
             </Button>
-            <Pane layoutX="20.0" layoutY="396.0" prefHeight="84.0" prefWidth="360.0">
+            <Pane layoutX="20.0" layoutY="371.0" prefHeight="84.0" prefWidth="360.0">
                <children>
                   <RadioButton layoutX="60.0" layoutY="42.0" mnemonicParsing="false" text="Admin">
                      <font>
@@ -91,16 +91,6 @@
                         <Font name="Roboto" size="16.0" />
                      </font>
                   </Label>
-               </children>
-            </Pane>
-            <Pane onMouseDragged="#onMouseDragged" onMousePressed="#onMousePressed" prefHeight="35.0" prefWidth="400.0" style="-fx-background-color: #5D4037;" styleClass="bar">
-               <children>
-                  <Label layoutX="14.0" layoutY="9.0" text="Register" textFill="WHITE">
-                     <font>
-                        <Font name="Roboto" size="14.0" />
-                     </font>
-                  </Label>
-                  <Button layoutX="357.0" mnemonicParsing="false" onAction="#exit" prefHeight="35.0" prefWidth="43.0" styleClass="exit_btn" />
                </children>
             </Pane>
          </children>

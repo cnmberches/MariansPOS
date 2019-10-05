@@ -7,6 +7,8 @@ package marianspos;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,6 +30,9 @@ public class FXMLDocumentController implements Initializable
     //Initialize value of position
     private double xOffset = 0;
     private double yOffset = 0;
+    
+    @FXML
+    private TextField username_textField, password_textField;
     
     @FXML
     private void exit(ActionEvent e) throws IOException 
@@ -58,10 +63,8 @@ public class FXMLDocumentController implements Initializable
         stage.setTitle("Register");
         stage.setResizable(false);
         stage.sizeToScene();
-        stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(new Scene(root1));  
         stage.show();
-        MariansPOS.stage.close();
         new DBConnector().getConnection();
     }
     
@@ -72,7 +75,7 @@ public class FXMLDocumentController implements Initializable
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DashBoard.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initModality(Modality.WINDOW_MODAL);
         stage.setTitle("Dashboard");
         stage.setResizable(false);
         stage.sizeToScene();
@@ -80,27 +83,27 @@ public class FXMLDocumentController implements Initializable
         stage.show();
         MariansPOS.stage.close();
     }
-    
-    @FXML
-    private void onMousePressed(MouseEvent event) throws IOException
-    {
-        //FOr getting the position of window when the bar is clicked
-        xOffset = event.getSceneX();
-        yOffset = event.getSceneY();
-    }
-    
-    @FXML
-    private void onMouseDragged(MouseEvent event) throws IOException
-    {
-        //For dragging the window 
-        final Node source = (Node) event.getSource();
-        final Stage stage = (Stage) source.getScene().getWindow();
-        stage.setX(event.getScreenX() - xOffset);
-        stage.setY(event.getScreenY() - yOffset);
-    }      
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
     }    
+    
+    void logIn(){
+        String username = username_textField.getText(), password = password_textField.getText();
+        final String queryCheck = "SELECT * from accounts_tbl WHERE username = '" + username + "'";
+        try
+        {
+            DBConnector db = new DBConnector();
+            final PreparedStatement ps = db.getConnection().prepareStatement(queryCheck);
+            final ResultSet resultSet = ps.executeQuery();
+            if(resultSet.next())
+            {
+                
+            }
+        }
+        catch(Exception e)
+        {
+        }
+    }
 }

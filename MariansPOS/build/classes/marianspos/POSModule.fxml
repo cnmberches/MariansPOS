@@ -10,10 +10,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1280.0" style="-fx-background-color: #EDEDED; -fx-border-color: #bdbdbd;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="marianspos.POSModuleController">
@@ -31,105 +28,15 @@
             <Button layoutX="1237.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="43.0" styleClass="exit_btn" />
          </children>
       </Pane>
-      <TableView fx:id="menu_tbl" fixedCellSize="1.0" layoutX="174.0" layoutY="94.0" prefHeight="528.0" prefWidth="508.0" style="-fx-background-color: #fff; -fx-border-color: #bdbdbd;" styleClass="menu_tbl">
+      <TableView fx:id="menu_tbl" layoutX="28.0" layoutY="142.0" prefHeight="345.0" prefWidth="650.0" style="-fx-background-color: #fff; -fx-border-color: #bdbdbd;" styleClass="menu_tbl">
         <columns>
           <TableColumn editable="false" prefWidth="74.0" style="-fx-background-color: #D7CCC8;" text="Menu ID" />
           <TableColumn editable="false" prefWidth="67.0" style="-fx-background-color: #D7CCC8;" text="Category" />
-            <TableColumn editable="false" prefWidth="227.0" style="-fx-background-color: #D7CCC8;" text="Menu Name" />
-            <TableColumn editable="false" prefWidth="137.0" style="-fx-background-color: #D7CCC8;" text="Menu Specials" />
+            <TableColumn editable="false" prefWidth="303.0" style="-fx-background-color: #D7CCC8;" text="Menu Name" />
+            <TableColumn editable="false" prefWidth="204.0" style="-fx-background-color: #D7CCC8;" text="Menu Specials" />
         </columns>
       </TableView>
-      <GridPane alignment="CENTER" layoutX="18.0" layoutY="95.0" prefHeight="541.0" prefWidth="135.0">
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" valignment="TOP" vgrow="ALWAYS" />
-            <RowConstraints minHeight="10.0" valignment="TOP" vgrow="ALWAYS" />
-            <RowConstraints minHeight="10.0" valignment="TOP" vgrow="ALWAYS" />
-            <RowConstraints minHeight="10.0" valignment="TOP" vgrow="ALWAYS" />
-            <RowConstraints minHeight="10.0" valignment="TOP" vgrow="ALWAYS" />
-            <RowConstraints minHeight="10.0" valignment="TOP" vgrow="ALWAYS" />
-            <RowConstraints minHeight="10.0" valignment="TOP" vgrow="ALWAYS" />
-            <RowConstraints minHeight="10.0" valignment="TOP" vgrow="ALWAYS" />
-            <RowConstraints minHeight="10.0" valignment="TOP" vgrow="ALWAYS" />
-            <RowConstraints minHeight="10.0" valignment="TOP" vgrow="ALWAYS" />
-            <RowConstraints minHeight="10.0" valignment="TOP" vgrow="ALWAYS" />
-         </rowConstraints>
-         <children>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Merienda" textFill="WHITE">
-               <font>
-                  <Font name="Roboto" size="14.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="135.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Sandwich" textFill="WHITE">
-               <font>
-                  <Font name="Roboto" size="14.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Pulutan" textFill="WHITE" GridPane.rowIndex="1">
-               <font>
-                  <Font name="Roboto" size="14.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Barkada Deals" textFill="WHITE" GridPane.rowIndex="1">
-               <font>
-                  <Font name="Roboto" size="14.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Sinangag Specials" textFill="WHITE" GridPane.rowIndex="2">
-               <font>
-                  <Font name="Roboto" size="14.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Rice Meals" textFill="WHITE" GridPane.rowIndex="2">
-               <font>
-                  <Font name="Roboto" size="14.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Specialties" textFill="WHITE" GridPane.rowIndex="3">
-               <font>
-                  <Font name="Roboto" size="14.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Soup" textFill="WHITE" GridPane.rowIndex="4">
-               <font>
-                  <Font name="Roboto" size="14.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Dessert" textFill="WHITE" GridPane.rowIndex="5">
-               <font>
-                  <Font name="Roboto" size="14.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Pancit Bilao" textFill="WHITE" GridPane.rowIndex="6">
-               <font>
-                  <Font name="Roboto" size="14.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Main" textFill="WHITE" GridPane.rowIndex="7">
-               <font>
-                  <Font name="Roboto" size="14.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Vegetables" textFill="WHITE" GridPane.rowIndex="8">
-               <font>
-                  <Font name="Roboto" size="14.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Extra Orders" textFill="WHITE" GridPane.rowIndex="9">
-               <font>
-                  <Font name="Roboto" size="14.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Pancit Bilao Specials" textFill="WHITE" GridPane.rowIndex="10">
-               <font>
-                  <Font name="Roboto" size="14.0" />
-               </font>
-            </Button>
-         </children>
-      </GridPane>
-      <TableView fx:id="menu_tbl1" fixedCellSize="1.0" layoutX="706.0" layoutY="133.0" prefHeight="307.0" prefWidth="554.0" style="-fx-background-color: #fff; -fx-border-color: #bdbdbd;" styleClass="menu_tbl">
+      <TableView fx:id="menu_tbl1" fixedCellSize="1.0" layoutX="707.0" layoutY="140.0" prefHeight="307.0" prefWidth="554.0" style="-fx-background-color: #fff; -fx-border-color: #bdbdbd;" styleClass="menu_tbl">
          <columns>
             <TableColumn editable="false" prefWidth="54.0" style="-fx-background-color: #D7CCC8;" text="Menu ID" />
             <TableColumn editable="false" prefWidth="174.0" style="-fx-background-color: #D7CCC8;" text="Menu Name" />
@@ -140,7 +47,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Pane layoutX="706.0" layoutY="463.0" prefHeight="159.0" prefWidth="554.0" style="-fx-background-color: #fff; -fx-border-color: #bdbdbd;">
+      <Pane layoutX="707.0" layoutY="470.0" prefHeight="159.0" prefWidth="554.0" style="-fx-background-color: #fff; -fx-border-color: #bdbdbd;">
          <children>
             <ToggleButton layoutX="14.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Discount" textFill="WHITE">
                <font>
@@ -158,65 +65,80 @@
                </font>
             </RadioButton>
             <Separator layoutX="276.0" layoutY="10.0" orientation="VERTICAL" prefHeight="140.0" prefWidth="0.0" />
-            <Label layoutX="52.0" layoutY="60.0" text="Discount ">
+            <Label layoutX="52.0" layoutY="80.0" text="Discount ">
                <font>
                   <Font name="Roboto" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="53.0" layoutY="86.0" text="Tax">
+            <Label layoutX="53.0" layoutY="106.0" text="Tax">
                <font>
                   <Font name="Roboto" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="169.0" layoutY="59.0" text="10.00">
+            <Label layoutX="169.0" layoutY="79.0" text="10.00">
                <font>
                   <Font name="Roboto" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="169.0" layoutY="111.0" text="10.00">
+            <Label layoutX="169.0" layoutY="131.0" text="10.00">
                <font>
                   <Font name="Roboto" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="53.0" layoutY="112.0" text="Total">
+            <Label layoutX="53.0" layoutY="132.0" text="Total">
                <font>
                   <Font name="Roboto" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="169.0" layoutY="85.0" text="10.00">
+            <Label layoutX="169.0" layoutY="105.0" text="10.00">
                <font>
                   <Font name="Roboto" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="289.0" layoutY="39.0" text="Grand Total">
+            <Label layoutX="289.0" layoutY="20.0" text="Grand Total">
                <font>
                   <Font name="Roboto" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="418.0" layoutY="38.0" text="10.00">
+            <Label layoutX="418.0" layoutY="19.0" text="10.00">
                <font>
                   <Font name="Roboto" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="289.0" layoutY="77.0" text="Amount Tendered">
+            <Label layoutX="289.0" layoutY="50.0" text="Amount Tendered">
                <font>
                   <Font name="Roboto" size="14.0" />
                </font>
             </Label>
-            <TextField layoutX="418.0" layoutY="67.0" prefHeight="25.0" prefWidth="126.0" style="-fx-background-radius: 0; -fx-background-insets: 0, 0 0 1 0; -fx-background-color: #000, #fff;" />
-            <Label layoutX="289.0" layoutY="112.0" text="Change">
+            <TextField layoutX="418.0" layoutY="40.0" prefHeight="25.0" prefWidth="126.0" style="-fx-background-radius: 0; -fx-background-insets: 0, 0 0 1 0; -fx-background-color: #000, #fff;" />
+            <Label layoutX="289.0" layoutY="79.0" text="Change">
                <font>
                   <Font name="Roboto" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="418.0" layoutY="111.0" text="10.00">
+            <Label layoutX="418.0" layoutY="78.0" text="10.00">
                <font>
                   <Font name="Roboto" size="17.0" />
                </font>
             </Label>
+            <Button layoutX="346.0" layoutY="107.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="151.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="ORDER" textFill="WHITE">
+               <font>
+                  <Font name="Roboto" size="14.0" />
+               </font>
+            </Button>
+            <RadioButton layoutX="24.0" layoutY="55.0" mnemonicParsing="false" style="-fx-mark-highlight-color: #FF5722; -fx-mark-color: #FF5722;" text="Dine in">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </RadioButton>
+            <RadioButton layoutX="143.0" layoutY="55.0" mnemonicParsing="false" style="-fx-mark-highlight-color: #FF5722; -fx-mark-color: #FF5722;" text="Take Out">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </RadioButton>
          </children>
       </Pane>
-      <Label layoutX="935.0" layoutY="94.0" text="ORDERS">
+      <Label layoutX="936.0" layoutY="101.0" text="ORDERS">
          <font>
             <Font name="Roboto Black" size="25.0" />
          </font>
@@ -245,5 +167,81 @@
             </Label>
          </children>
       </Pane>
+      <Button layoutX="357.0" layoutY="601.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="151.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Merienda" textFill="WHITE">
+         <font>
+            <Font name="Roboto" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="202.0" layoutY="567.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="151.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Sandwich" textFill="WHITE">
+         <font>
+            <Font name="Roboto" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="511.0" layoutY="567.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="151.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Pulutan" textFill="WHITE">
+         <font>
+            <Font name="Roboto" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="357.0" layoutY="567.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="151.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Barkada Deals" textFill="WHITE">
+         <font>
+            <Font name="Roboto" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="202.0" layoutY="601.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="151.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Sinangag Specials" textFill="WHITE">
+         <font>
+            <Font name="Roboto" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="47.0" layoutY="567.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="151.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Rice Meals" textFill="WHITE">
+         <font>
+            <Font name="Roboto" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="511.0" layoutY="533.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="151.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Specialties" textFill="WHITE">
+         <font>
+            <Font name="Roboto" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="357.0" layoutY="533.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="151.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Soup" textFill="WHITE">
+         <font>
+            <Font name="Roboto" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="202.0" layoutY="533.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="151.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Dessert" textFill="WHITE">
+         <font>
+            <Font name="Roboto" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="47.0" layoutY="533.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="151.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Pancit Bilao" textFill="WHITE">
+         <font>
+            <Font name="Roboto" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="202.0" layoutY="499.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="151.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Main" textFill="WHITE">
+         <font>
+            <Font name="Roboto" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="511.0" layoutY="500.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="151.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Vegetables" textFill="WHITE">
+         <font>
+            <Font name="Roboto" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="357.0" layoutY="500.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="151.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Extra Orders" textFill="WHITE">
+         <font>
+            <Font name="Roboto" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="47.0" layoutY="499.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="151.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Pancit Bilao Specials" textFill="WHITE">
+         <font>
+            <Font name="Roboto" size="14.0" />
+         </font>
+      </Button>
+      <Label layoutX="28.0" layoutY="112.0" text="Search">
+         <font>
+            <Font name="Roboto" size="14.0" />
+         </font>
+      </Label>
+      <TextField layoutX="82.0" layoutY="102.0" prefHeight="25.0" prefWidth="150.0" style="-fx-background-radius: 0; -fx-background-insets: 0, 0 0 1 0; -fx-background-color: #000, #EDEDED;" />
    </children>
 </AnchorPane>
