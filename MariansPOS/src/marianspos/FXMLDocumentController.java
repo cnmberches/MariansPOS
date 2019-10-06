@@ -14,74 +14,75 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class FXMLDocumentController implements Initializable
 {
-    //Initialize value of position
-    private double xOffset = 0;
-    private double yOffset = 0;
-    
+ 
     @FXML
     private TextField username_textField, password_textField;
-    
-    @FXML
-    private void exit(ActionEvent e) throws IOException 
-    {
-        //Close the module
-        final Node source = (Node) e.getSource();
-        final Stage stage = (Stage) source.getScene().getWindow();
-        stage.close();
-    }
-    
-    @FXML
-    private void minimize(ActionEvent e) throws IOException 
-    {
-        //Minimize the module
-        final Node source = (Node) e.getSource();
-        final Stage stage = (Stage) source.getScene().getWindow();
-        stage.setIconified(true);;
-    }
     
     @FXML
     private void register(ActionEvent event) throws IOException
     {
         //Open register module
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Register.fxml"));
-        Parent root1 = (Parent) fxmlLoader.load();
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setTitle("Register");
-        stage.setResizable(false);
-        stage.sizeToScene();
-        stage.setScene(new Scene(root1));  
-        stage.show();
-        new DBConnector().getConnection();
+        openModule("Register.fxml", Modality.APPLICATION_MODAL, "Register");
     }
     
     @FXML
     private void logIn(ActionEvent event) throws IOException
     {
-        //Open logIn Module
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DashBoard.fxml"));
-        Parent root1 = (Parent) fxmlLoader.load();
-        Stage stage = new Stage();
-        stage.initModality(Modality.WINDOW_MODAL);
-        stage.setTitle("Dashboard");
-        stage.setResizable(false);
-        stage.sizeToScene();
-        stage.setScene(new Scene(root1));  
-        stage.show();
-        MariansPOS.stage.close();
+        String username = username_textField.getText(), password = password_textField.getText();
+        final String queryCheck = "SELECT * from accounts_tbl WHERE username = '"+ username +"'";
+        try
+        {
+            DBConnector db = new DBConnector();
+            final PreparedStatement ps = db.getConnection().prepareStatement(queryCheck);
+            ResultSet resultSet = ps.executeQuery();
+            if(resultSet.next())
+            {
+                if(username.equals(resultSet.getString("username")) && password.equals(resultSet.getString("password")))
+                {
+                    Global.name = resultSet.getString("name");
+                    Global.role = resultSet.getString("role");
+                    Global.account_id = resultSet.getString("accounts_id");
+                    Global.username = resultSet.getString("username");
+                    
+                    if("admin".equals(Global.role))
+                    {
+                        openModule("DashBoard.fxml", Modality.WINDOW_MODAL, "Dashboard");
+                    }
+                    else
+                    {
+                        openModule("POSModule.fxml", Modality.WINDOW_MODAL, "Point of Sales");
+                    }
+                }
+                else
+                {
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Please make sure that the username and password is correct" ,ButtonType.OK);
+                    alert.setHeaderText("Username/password is incorrect");
+                    alert.setTitle("");
+                    alert.showAndWait();
+                }
+            }
+            else
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Please make sure that the username is correct" ,ButtonType.OK);
+                alert.setHeaderText("User account doesn't exist");
+                alert.setTitle("");
+                alert.showAndWait();
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -89,21 +90,33 @@ public class FXMLDocumentController implements Initializable
     {
     }    
     
-    void logIn(){
-        String username = username_textField.getText(), password = password_textField.getText();
-        final String queryCheck = "SELECT * from accounts_tbl WHERE username = '" + username + "'";
-        try
+    void openModule(String fxmlFile, Modality modal, String title) throws IOException
+    {
+        //this function is for opening a new window where its parameter include the fxml file in string, 
+        //how the window will open (dialog or not),and its title 
+        //fxml loader is used to get the fxml file wherein it has the codes for the design of the window
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlFile));
+        //this parent root is for loading all the codes for design
+        Parent root1 = (Parent) fxmlLoader.load();
+        //this stage is for creating the window
+        Stage stage = new Stage();
+        //this function is for how the window will open (window or dialog)
+        stage.initModality(modal);
+        //this sets the title seen on the upper left of the window
+        stage.setTitle(title);
+        //this function makes the window not resizable
+        stage.setResizable(false);
+        //this makes sure that size is equal to the size of window based on the code
+        stage.sizeToScene();
+        //this puts the fxml file design in the window
+        stage.setScene(new Scene(root1));  
+        //this makes the window viewable to the user
+        stage.show();
+        if(modal.equals(Modality.WINDOW_MODAL))
         {
-            DBConnector db = new DBConnector();
-            final PreparedStatement ps = db.getConnection().prepareStatement(queryCheck);
-            final ResultSet resultSet = ps.executeQuery();
-            if(resultSet.next())
-            {
-                
-            }
-        }
-        catch(Exception e)
-        {
+            //this if statement is to check if the window is showned not as a dialog
+            //if it is WINDOW_MODAL, the main menu or log in module will close from the screen
+            MariansPOS.stage.close();
         }
     }
 }

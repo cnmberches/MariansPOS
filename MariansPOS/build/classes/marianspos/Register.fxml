@@ -3,6 +3,7 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
@@ -17,9 +18,9 @@
         <URL value="@register.css" />
     </stylesheets>
    <children>
-      <Pane prefHeight="516.0" prefWidth="400.0" style="-fx-background-color: #fff; -fx-border-color: #bdbdbd;" styleClass="password_TextField" stylesheets="@register.css">
+      <Pane prefHeight="596.0" prefWidth="400.0" style="-fx-background-color: #fff; -fx-border-color: #bdbdbd;" styleClass="password_TextField" stylesheets="@register.css">
          <children>
-            <TextField layoutX="25.0" layoutY="45.0" prefHeight="35.0" prefWidth="351.0" styleClass="name_textField" stylesheets="@register.css">
+            <TextField id="name_textField" fx:id="name_textField" layoutX="25.0" layoutY="66.0" prefHeight="35.0" prefWidth="351.0" styleClass="name_textField" stylesheets="@register.css">
                <font>
                   <Font name="Roboto" size="18.0" />
                </font>
@@ -27,7 +28,7 @@
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <TextField layoutX="25.0" layoutY="125.0" prefHeight="35.0" prefWidth="351.0" styleClass="username_textField" stylesheets="@register.css">
+            <TextField id="username_textField" fx:id="username_textField" layoutX="25.0" layoutY="146.0" prefHeight="35.0" prefWidth="351.0" styleClass="username_textField" stylesheets="@register.css">
                <font>
                   <Font name="Roboto" size="18.0" />
                </font>
@@ -35,64 +36,70 @@
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <PasswordField layoutX="29.0" layoutY="212.0" prefHeight="35.0" prefWidth="351.0" styleClass="password_textField" stylesheets="@register.css">
+            <PasswordField id="password_textField" fx:id="password_textField" layoutX="29.0" layoutY="233.0" prefHeight="35.0" prefWidth="351.0" styleClass="password_textField" stylesheets="@register.css">
                <font>
                   <Font name="Roboto" size="18.0" />
                </font>
             </PasswordField>
-            <Label layoutX="29.0" layoutY="15.0" text="Name">
+            <Label layoutX="29.0" layoutY="36.0" text="Name">
                <font>
                   <Font name="Roboto" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="29.0" layoutY="95.0" text="Username">
+            <Label layoutX="29.0" layoutY="116.0" text="Username">
                <font>
                   <Font name="Roboto" size="16.0" />
                </font>
             </Label>
             
-            <Label layoutX="27.0" layoutY="180.0" text="Password">
+            <Label layoutX="27.0" layoutY="201.0" text="Password">
                <font>
                   <Font name="Roboto" size="16.0" />
                </font>
             </Label>
-            <PasswordField layoutX="29.0" layoutY="298.0" prefHeight="35.0" prefWidth="351.0" styleClass="repassword_textField" stylesheets="@register.css">
+            <PasswordField id="repassword_textField" fx:id="repassword_textField" layoutX="29.0" layoutY="319.0" prefHeight="35.0" prefWidth="351.0" styleClass="repassword_textField" stylesheets="@register.css">
                <font>
                   <Font name="Roboto" size="18.0" />
                </font>
             </PasswordField>
-            <Label layoutX="29.0" layoutY="268.0" text="Re-type Password">
+            <Label layoutX="29.0" layoutY="289.0" text="Re-type Password">
                <font>
                   <Font name="Roboto" size="16.0" />
                </font>
             </Label>
-            <Button layoutX="20.0" layoutY="462.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="360.0" styleClass="register_Btn" stylesheets="@register.css" text="Register" textFill="WHITE">
+            <Button id="register_Btn" fx:id="register_Btn" layoutX="20.0" layoutY="542.0" mnemonicParsing="false" onAction="#registerUser" prefHeight="35.0" prefWidth="360.0" styleClass="register_Btn" stylesheets="@register.css" text="Register" textFill="WHITE">
                <font>
                   <Font name="Roboto" size="14.0" />
                </font>
             </Button>
-            <Pane layoutX="20.0" layoutY="350.0" prefHeight="84.0" prefWidth="360.0">
+            <Pane layoutX="20.0" layoutY="371.0" prefHeight="84.0" prefWidth="360.0">
                <children>
-                  <RadioButton layoutX="60.0" layoutY="42.0" mnemonicParsing="false" text="Admin">
+                  <RadioButton id="admin_rb" fx:id="admin_rb" layoutX="60.0" layoutY="42.0" mnemonicParsing="false" styleClass="admin_rb" text="Admin">
                      <font>
                         <Font name="Roboto" size="16.0" />
                      </font>
                      <toggleGroup>
-                        <ToggleGroup fx:id="user_toggleGroup" />
+                        <ToggleGroup fx:id="role_tGroup" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton layoutX="201.0" layoutY="42.0" mnemonicParsing="false" text="Employee" toggleGroup="$user_toggleGroup">
+                  <RadioButton id="employee_rb" fx:id="employee_rb" layoutX="201.0" layoutY="42.0" mnemonicParsing="false" selected="true" styleClass="employee_rb" text="Employee" toggleGroup="$role_tGroup">
                      <font>
                         <Font name="Roboto" size="16.0" />
                      </font>
                   </RadioButton>
-                  <Label layoutX="14.0" layoutY="4.0" text="Role">
+                  <Label layoutX="8.0" layoutY="4.0" text="Role">
                      <font>
                         <Font name="Roboto" size="16.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
+            <DatePicker id="datePicker" fx:id="datePicker" layoutX="26.0" layoutY="493.0" style="-fx-background-radius: 0;" styleClass="datePicker" />
+            <Label layoutX="24.0" layoutY="467.0" text="Date Hired">
+               <font>
+                  <Font name="Roboto" size="16.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>

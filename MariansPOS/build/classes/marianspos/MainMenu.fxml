@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="559.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="marianspos.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="561.0" prefWidth="372.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="marianspos.FXMLDocumentController">
    <children>
-      <Pane layoutY="-3.0" prefHeight="564.0" prefWidth="400.0" style="-fx-background-color: #ffffff; -fx-border-color: #bdbdbd;">
+      <Pane layoutY="-3.0" prefHeight="564.0" prefWidth="379.0" style="-fx-background-color: #ffffff; -fx-border-color: #bdbdbd;">
          <children>
-            <Pane layoutY="2.0" prefHeight="287.0" prefWidth="400.0" style="-fx-background-color: #795548;">
+            <Pane layoutY="2.0" prefHeight="287.0" prefWidth="379.0" style="-fx-background-color: #795548;">
                <children>
-                  <ImageView fitHeight="194.0" fitWidth="227.0" layoutX="87.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="169.0" fitWidth="198.0" layoutX="91.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../icons-images/logo-black.png" />
                      </image>
@@ -25,7 +25,7 @@
                </children>
             </Pane>
             
-                  <TextField layoutX="71.0" layoutY="350.0" prefHeight="35.0" prefWidth="260.0" styleClass="username_textField" stylesheets="@../marianspos/MainMenu.css">
+                  <TextField id="username_textField" fx:id="username_textField" layoutX="61.0" layoutY="349.0" prefHeight="35.0" prefWidth="260.0" styleClass="username_textField" stylesheets="@../marianspos/MainMenu.css">
                <font>
                   <Font name="Roboto" size="18.0" />
                </font>
@@ -33,27 +33,27 @@
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <PasswordField layoutX="69.0" layoutY="429.0" prefHeight="35.0" prefWidth="260.0" styleClass="password_textField" stylesheets="@MainMenu.css">
+            <PasswordField id="password_textField" fx:id="password_textField" layoutX="59.0" layoutY="428.0" prefHeight="35.0" prefWidth="260.0" styleClass="password_textField" stylesheets="@MainMenu.css">
                <font>
                   <Font name="Roboto" size="18.0" />
                </font>
             </PasswordField>
-            <Label layoutX="71.0" layoutY="321.0" text="Username">
+            <Label layoutX="61.0" layoutY="320.0" text="Username">
                <font>
                   <Font name="Roboto" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="71.0" layoutY="400.0" text="Password">
+            <Label layoutX="61.0" layoutY="399.0" text="Password">
                <font>
                   <Font name="Roboto" size="16.0" />
                </font>
             </Label>
-            <Button id="register_Btn" fx:id="register_Btn" layoutX="69.0" layoutY="499.0" mnemonicParsing="false" onAction="#register" prefHeight="35.0" prefWidth="110.0" styleClass="register_Btn" stylesheets="@../marianspos/MainMenu.css" text="Register" textFill="WHITE">
+            <Button id="register_Btn" fx:id="register_Btn" layoutX="59.0" layoutY="498.0" mnemonicParsing="false" onAction="#register" prefHeight="35.0" prefWidth="110.0" styleClass="register_Btn" stylesheets="@../marianspos/MainMenu.css" text="Register" textFill="WHITE">
                <font>
                   <Font name="Roboto" size="16.0" />
                </font>
             </Button>
-            <Button id="logIn_Btn" fx:id="logIn_Btn" layoutX="219.0" layoutY="499.0" mnemonicParsing="false" onAction="#logIn" prefHeight="35.0" prefWidth="110.0" styleClass="logIn_Btn" stylesheets="@../marianspos/MainMenu.css" text="Log In" textFill="WHITE">
+            <Button id="logIn_Btn" fx:id="logIn_Btn" layoutX="209.0" layoutY="498.0" mnemonicParsing="false" onAction="#logIn" prefHeight="35.0" prefWidth="110.0" styleClass="logIn_Btn" stylesheets="@../marianspos/MainMenu.css" text="Log In" textFill="WHITE">
                <font>
                   <Font name="Roboto" size="16.0" />
                </font>
