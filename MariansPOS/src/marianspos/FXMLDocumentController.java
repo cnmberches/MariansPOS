@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package marianspos;
 
 import java.io.IOException;
@@ -39,11 +34,12 @@ public class FXMLDocumentController implements Initializable
     private void logIn(ActionEvent event) throws IOException
     {
         String username = username_textField.getText(), password = password_textField.getText();
-        final String queryCheck = "SELECT * from accounts_tbl WHERE username = '"+ username +"'";
+        final String queryCheck = "SELECT * from accounts_tbl WHERE username = ?";
         try
         {
             DBConnector db = new DBConnector();
-            final PreparedStatement ps = db.getConnection().prepareStatement(queryCheck);
+            PreparedStatement ps = db.getConnection().prepareStatement(queryCheck);
+            ps.setString(1, username);
             ResultSet resultSet = ps.executeQuery();
             if(resultSet.next())
             {

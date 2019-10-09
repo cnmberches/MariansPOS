@@ -1,64 +1,49 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package marianspos;
 
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.ResourceBundle;
-import java.util.Timer;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-/**
- * FXML Controller class
- *
- * @author user
- */
+
 public class DashBoardController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
     @FXML
-    private Label date_lbl, time_lbl;
+    private Label date_lbl, time_lbl, name_lbl;
     
     @FXML
-    private void POS_Btn(ActionEvent event) throws IOException {
-        //To open the POS Module
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("POSModule.fxml"));
-        Parent root1 = (Parent) fxmlLoader.load();
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setTitle("Point Of Sales System");
-        stage.setResizable(false);
-        stage.sizeToScene();
-        stage.setScene(new Scene(root1));  
-        stage.show();
-        MariansPOS.stage.close();
+    private void salesReport(ActionEvent event) throws IOException {
+        openModule("SalesReportModule.fxml", Modality.WINDOW_MODAL, "Sales Report");
+    }
+    
+    @FXML
+    private void inventoryReport(ActionEvent event) throws IOException {
+        openModule("InventoryModule.fxml", Modality.WINDOW_MODAL, "Inventory");
+    }
+    
+    @FXML
+    private void accountReport(ActionEvent event) throws IOException {
+        openModule("AccountModule.fxml", Modality.WINDOW_MODAL, "Account Manager");
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
+        name_lbl.setText("Name: " + Global.name);
         //To display live date and time 
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {        
             Calendar now = Calendar.getInstance();
@@ -71,4 +56,33 @@ public class DashBoardController implements Initializable {
         clock.play();  
     }    
     
+    void openModule(String fxmlFile, Modality modal, String title) throws IOException
+    {
+        //this function is for opening a new window where its parameter include the fxml file in string, 
+        //how the window will open (dialog or not),and its title 
+        //fxml loader is used to get the fxml file wherein it has the codes for the design of the window
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlFile));
+        //this parent root is for loading all the codes for design
+        Parent root1 = (Parent) fxmlLoader.load();
+        //this stage is for creating the window
+        Stage stage = new Stage();
+        //this function is for how the window will open (window or dialog)
+        stage.initModality(modal);
+        //this sets the title seen on the upper left of the window
+        stage.setTitle(title);
+        //this function makes the window not resizable
+        stage.setResizable(false);
+        //this makes sure that size is equal to the size of window based on the code
+        stage.sizeToScene();
+        //this puts the fxml file design in the window
+        stage.setScene(new Scene(root1));  
+        //this makes the window viewable to the user
+        stage.show();
+        if(modal.equals(Modality.WINDOW_MODAL))
+        {
+            //this if statement is to check if the window is showned not as a dialog
+            //if it is WINDOW_MODAL, the main menu or log in module will close from the screen
+            MariansPOS.stage.close();
+        }
+    }
 }

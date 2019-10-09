@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="marianspos.InventoryModuleController">
+    <stylesheets>
+        <URL value="@inventorymodule.css" />
+    </stylesheets>
+   <children>
+      <TableView fx:id="menu_tbl" layoutX="38.0" layoutY="117.0" prefHeight="345.0" prefWidth="650.0" style="-fx-background-color: #fff; -fx-border-color: #bdbdbd;" styleClass="menu_tbl">
+         <columns>
+            <TableColumn editable="false" prefWidth="303.0" style="-fx-background-color: #D7CCC8;" text="Menu Name" />
+            <TableColumn editable="false" prefWidth="204.0" style="-fx-background-color: #D7CCC8;" text="Price" />
+            <TableColumn editable="false" prefWidth="303.0" style="-fx-background-color: #D7CCC8;" text="Description" />
+            <TableColumn editable="false" prefWidth="303.0" style="-fx-background-color: #D7CCC8;" text="Status" />
+         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </children>
+</AnchorPane>

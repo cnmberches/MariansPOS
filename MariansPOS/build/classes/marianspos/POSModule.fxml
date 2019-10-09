@@ -22,11 +22,12 @@
          <children>
             <TableView fx:id="menu_tbl" layoutX="28.0" layoutY="107.0" prefHeight="345.0" prefWidth="650.0" style="-fx-background-color: #fff; -fx-border-color: #bdbdbd;" styleClass="menu_tbl">
               <columns>
-                <TableColumn editable="false" prefWidth="74.0" style="-fx-background-color: #D7CCC8;" text="Menu ID" />
-                <TableColumn editable="false" prefWidth="67.0" style="-fx-background-color: #D7CCC8;" text="Category" />
                   <TableColumn editable="false" prefWidth="303.0" style="-fx-background-color: #D7CCC8;" text="Menu Name" />
                   <TableColumn editable="false" prefWidth="204.0" style="-fx-background-color: #D7CCC8;" text="Menu Specials" />
               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
             </TableView>
             <TableView fx:id="menu_tbl1" fixedCellSize="1.0" layoutX="707.0" layoutY="105.0" prefHeight="307.0" prefWidth="554.0" style="-fx-background-color: #fff; -fx-border-color: #bdbdbd;" styleClass="menu_tbl">
                <columns>
