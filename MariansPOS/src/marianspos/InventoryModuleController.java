@@ -3,7 +3,7 @@ package marianspos;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
-import java.util.ArrayList;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -26,7 +26,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 public class InventoryModuleController implements Initializable {
-    private String[] columns = {"Category", "Menu Name", "Price", "Description", "Status"};
+    private String[] columns = {"ID", "Category", "Menu Name", "Price", "Description","Special", "Status", "Servings"};
 
     private ObservableList<ObservableList> tbl_data;
     
@@ -52,7 +52,13 @@ public class InventoryModuleController implements Initializable {
     {
         if (event.getClickCount() == 2) //Checking double click
         {
-            Global.inventoryClickedItems = menu_tbl.getSelectionModel().selectedItemProperty().get().toString().replace('[', ' ').replace(']', ' ').split(",");
+            Global.isForAddMenu = false;
+            Global.inventoryClickedItems = menu_tbl.getSelectionModel().selectedItemProperty()
+                    .get().toString().replace('[', ' ').replace(']', ' ').split(", ");
+            for(int i = 0; i < Global.inventoryClickedItems.length ; i++)
+            {
+                Global.inventoryClickedItems[i] = Global.inventoryClickedItems[i].trim();
+            }
             //this function is for opening a new window where its parameter include the fxml file in string, 
             //how the window will open (dialog or not),and its title 
             //fxml loader is used to get the fxml file wherein it has the codes for the design of the window
@@ -73,13 +79,13 @@ public class InventoryModuleController implements Initializable {
             stage.setScene(new Scene(root1));  
             //this makes the window viewable to the user
             stage.show();
-            
         }
     }
     
     @FXML
     private void add_menu(ActionEvent e) throws IOException
     {
+        Global.isForAddMenu = true;
         //this function is for opening a new window where its parameter include the fxml file in string, 
         //how the window will open (dialog or not),and its title 
         //fxml loader is used to get the fxml file wherein it has the codes for the design of the window
@@ -112,7 +118,7 @@ public class InventoryModuleController implements Initializable {
             ResultSet rs1 = con.getConnection().createStatement().executeQuery(SQL1);
             
             tbl_data = FXCollections.observableArrayList();
-            String SQL2 = "SELECT category_id, menus_name, menus_price, menus_description, menu_status from menus_tbl";
+            String SQL2 = "SELECT * from menus_tbl";
             //ResultSet
             ResultSet rs2 = con.getConnection().createStatement().executeQuery(SQL2);
             
@@ -131,10 +137,9 @@ public class InventoryModuleController implements Initializable {
                 menu_tbl.getColumns().addAll(col);
             }
             
-            
             while(rs1.next())
             {
-                Global.col_names.add(rs1.getString(1));
+                Global.category_names.add(rs1.getString(1));
             }
             
             while (rs2.next()) {
@@ -142,9 +147,9 @@ public class InventoryModuleController implements Initializable {
                 ObservableList<String> row = FXCollections.observableArrayList();
                 for (int i = 1; i <= rs2.getMetaData().getColumnCount(); i++) {
                     //Iterate Column
-                    if(i == 1)
+                    if(i == 2)
                     {
-                        row.add(Global.col_names.get(rs2.getInt(i)));
+                        row.add(Global.category_names.get(rs2.getInt(i)));
                     }
                     else
                     {
@@ -155,10 +160,8 @@ public class InventoryModuleController implements Initializable {
             }
             menu_tbl.setItems(tbl_data);
         }
-        catch(Exception e)
+        catch(SQLException e)
         {
-            System.out.println("awit ");
-            e.printStackTrace();
         }
     }    
     

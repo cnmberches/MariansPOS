@@ -14,13 +14,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
 
-public class SalesReportModuleController implements Initializable {
-    private String[] columns = {"ID", "Accounts ID", "Orders", "Date Ordered", "Transaction Status"};
+public class AccountManagementModuleController implements Initializable {
+    private String[] columns = {"ID", "Name", "Username", "Role", "Date Hired"};
 
     private ObservableList<ObservableList> tbl_data;
     
     @FXML
-    private TableView transaction_tbl;
+    private TableView acc_tbl;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -28,7 +28,7 @@ public class SalesReportModuleController implements Initializable {
         try
         {
             tbl_data = FXCollections.observableArrayList();
-            String SQL2 = "SELECT * from transactions_tbl";
+            String SQL2 = "SELECT accounts_id, name, username, role, date_hired from accounts_tbl";
             //ResultSet
             ResultSet rs2 = con.getConnection().createStatement().executeQuery(SQL2);
             
@@ -43,7 +43,7 @@ public class SalesReportModuleController implements Initializable {
                         return new SimpleStringProperty(param.getValue().get(j).toString());
                     }
                 });
-                transaction_tbl.getColumns().addAll(col);
+                acc_tbl.getColumns().addAll(col);
             }
             
             while (rs2.next()) {
@@ -55,8 +55,8 @@ public class SalesReportModuleController implements Initializable {
                 }
                 tbl_data.add(row);
             }
-            transaction_tbl.setItems(tbl_data);
-            transaction_tbl.setColumnResizePolicy( TableView.CONSTRAINED_RESIZE_POLICY);
+            acc_tbl.setItems(tbl_data);
+            acc_tbl.setColumnResizePolicy( TableView.CONSTRAINED_RESIZE_POLICY);
         }
         catch(SQLException e)
         {

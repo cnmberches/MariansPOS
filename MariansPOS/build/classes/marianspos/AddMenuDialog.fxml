@@ -6,21 +6,31 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fff;" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="marianspos.AddMenuDialogController">
+<AnchorPane id="AnchorPane" prefHeight="455.0" prefWidth="600.0" style="-fx-background-color: #fff;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="marianspos.AddMenuDialogController">
     <stylesheets>
         <URL value="@addmenudialog.css" />
     </stylesheets>
    <children>
-      <ComboBox fx:id="category_cb" layoutX="284.0" layoutY="102.0" prefHeight="27.0" prefWidth="289.0" promptText="Category" style="-fx-background-radius: 0; -fx-background-color: #fff; -fx-border-color: #BDBDBD;" />
-      <Label layoutX="25.0" layoutY="53.0" text="Name">
+       <Label layoutX="25.0" layoutY="53.0" text="Name">
          <font>
             <Font name="Roboto" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="71.0" layoutY="48.0" prefHeight="25.0" prefWidth="289.0" style="-fx-background-radius: 0; -fx-background-color: #bdbdbd,  #fff;">
+      <TextField fx:id="name_tf" layoutX="71.0" layoutY="48.0" prefHeight="25.0" prefWidth="289.0" style="-fx-background-radius: 0; -fx-background-color: #bdbdbd,  #fff;">
+         <font>
+            <Font name="Roboto" size="14.0" />
+         </font>
+      </TextField>
+       <Label layoutX="387.0" layoutY="53.0" text="Price">
+         <font>
+            <Font name="Roboto" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="price_tf" layoutX="431.0" layoutY="48.0" prefHeight="28.0" prefWidth="143.0" style="-fx-background-radius: 0; -fx-background-color: #bdbdbd,  #fff;">
          <font>
             <Font name="Roboto" size="14.0" />
          </font>
@@ -30,21 +40,33 @@
             <Font name="Roboto" size="14.0" />
          </font>
       </Label>
-      <TextArea layoutX="24.0" layoutY="149.0" prefHeight="156.0" prefWidth="553.0" style="-fx-background-color: #bdbdbd, #fff; -fx-background-radius: 0;" />
-      <Button layoutX="425.0" layoutY="341.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="151.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Add" textFill="WHITE">
+      <TextArea fx:id="description_ta" layoutX="24.0" layoutY="149.0" prefHeight="156.0" prefWidth="553.0" style="-fx-background-color: #bdbdbd, #fff; -fx-background-radius: 0;" />
+      <ComboBox fx:id="category_cb" editable="true" layoutX="286.0" layoutY="102.0" prefHeight="27.0" prefWidth="289.0" promptText="Category" style="-fx-background-radius: 0; -fx-background-color: #fff; -fx-border-color: #BDBDBD;" />
+      <Button fx:id="add_btn" layoutX="430.0" layoutY="398.0" mnemonicParsing="false" onAction="#add" prefHeight="28.0" prefWidth="151.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Add" textFill="WHITE">
          <font>
             <Font name="Roboto" size="14.0" />
          </font>
       </Button>
-      <Label layoutX="383.0" layoutY="53.0" text="Price">
+      <ToggleButton fx:id="special_tb" layoutX="129.0" layoutY="344.0" mnemonicParsing="false" onAction="#special_btn_action" style="-fx-background-radius: 0;" text="Special">
          <font>
             <Font name="Roboto" size="14.0" />
          </font>
-      </Label>
-      <TextField layoutX="429.0" layoutY="48.0" prefHeight="28.0" prefWidth="143.0" style="-fx-background-radius: 0; -fx-background-color: #bdbdbd,  #fff;">
+      </ToggleButton>
+      <TextField fx:id="persons_tf" alignment="CENTER" layoutX="293.0" layoutY="344.0" prefHeight="28.0" prefWidth="38.0" style="-fx-background-radius: 0; -fx-background-color: #bdbdbd,  #fff;" text="1">
          <font>
             <Font name="Roboto" size="14.0" />
          </font>
       </TextField>
+      <Label layoutX="224.0" layoutY="349.0" text="Servings">
+         <font>
+            <Font name="Roboto" size="14.0" />
+         </font>
+      </Label>
+      <ToggleButton fx:id="available_tb" layoutX="24.0" layoutY="344.0" mnemonicParsing="false" style="-fx-background-radius: 0;" text="Available">
+         <font>
+            <Font name="Roboto" size="14.0" />
+         </font>
+      </ToggleButton>
+     
    </children>
 </AnchorPane>
