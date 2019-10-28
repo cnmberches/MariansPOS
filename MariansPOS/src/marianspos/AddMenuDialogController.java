@@ -151,7 +151,7 @@ public class AddMenuDialogController implements Initializable {
                 + "menus_price, menus_description, menus_special, "
                 + "menu_status, menus_persons) VALUES (?, ?, ?, ?, ?, ? ,?)");
             ps.setInt(1, Global.category_names.indexOf(category)+1);
-            ps.setString(2, name_tf.getText());
+            ps.setString(2, name_tf.getText().replaceAll("//s", ""));
             ps.setInt(3, Integer.parseInt(price_tf.getText()));
             ps.setString(4, description_ta.getText());
             ps.setString(5, special_menu);

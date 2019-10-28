@@ -63,12 +63,12 @@
             </Label>
          </children>
       </Pane>
-      <Button layoutX="431.0" layoutY="245.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="151.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Add" textFill="WHITE">
+      <Button fx:id="add_btn" layoutX="431.0" layoutY="245.0" mnemonicParsing="false" onAction="#add" prefHeight="28.0" prefWidth="151.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Add" textFill="WHITE">
          <font>
             <Font name="Roboto" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="269.0" layoutY="245.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="151.0" style="-fx-background-color: #f44336; -fx-background-radius: 0;" text="Cancel" textFill="WHITE">
+      <Button fx:id="cancel_btn" layoutX="269.0" layoutY="245.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="151.0" style="-fx-background-color: #f44336; -fx-background-radius: 0;" text="Cancel" textFill="WHITE">
          <font>
             <Font name="Roboto" size="14.0" />
          </font>

@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
@@ -26,13 +25,7 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <TableView fx:id="menu_tbl1" fixedCellSize="1.0" layoutX="707.0" layoutY="105.0" prefHeight="307.0" prefWidth="554.0" style="-fx-background-color: #fff; -fx-border-color: #bdbdbd;" styleClass="menu_tbl">
-               <columns>
-                  <TableColumn editable="false" prefWidth="54.0" style="-fx-background-color: #D7CCC8;" text="Menu ID" />
-                  <TableColumn editable="false" prefWidth="174.0" style="-fx-background-color: #D7CCC8;" text="Menu Name" />
-                  <TableColumn editable="false" prefWidth="185.0" style="-fx-background-color: #D7CCC8;" text="Quantity" />
-                  <TableColumn editable="false" prefWidth="75.0" style="-fx-background-color: #D7CCC8;" text="Cost" />
-               </columns>
+            <TableView fx:id="orders_tbl" fixedCellSize="1.0" layoutX="707.0" layoutY="107.0" prefHeight="307.0" prefWidth="554.0" style="-fx-background-color: #fff; -fx-border-color: #bdbdbd;" styleClass="menu_tbl">
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>

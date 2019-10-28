@@ -16,7 +16,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -25,26 +27,34 @@ public class POSModuleController implements Initializable {
     private String[] columns = {"ID", "Category", "Menu Name", "Price", "Description","Special", "Status", "Servings"};
 
     private ObservableList<ObservableList> tbl_data;
-    
+    private ObservableList<ObservableList> data;
+
     @FXML
     private TableView menu_tbl;
     
+    @FXML
+    private TableView  orders_tbl;
+
+    @FXML
+    private TableColumn id_col, name_col, quantity_col, cost_col;
+
     @FXML
     public void clickItem(MouseEvent event) throws IOException
     {
         if (event.getClickCount() == 2) //Checking double click
         {
             Global.isForAddMenu = false;
-            Global.inventoryClickedItems = menu_tbl.getSelectionModel().selectedItemProperty()
+            Global.menuClickedItems = menu_tbl.getSelectionModel().selectedItemProperty()
                     .get().toString().replace('[', ' ').replace(']', ' ').split(", ");
-            for(int i = 0; i < Global.inventoryClickedItems.length ; i++)
+            for(int i = 0; i < Global.menuClickedItems.length ; i++)
             {
-                Global.inventoryClickedItems[i] = Global.inventoryClickedItems[i].trim();
+                Global.menuClickedItems[i] = Global.menuClickedItems[i].trim();
             }
-            //this function is for opening a new window where its parameter include the fxml file in string, 
-            //how the window will open (dialog or not),and its title 
+            //this function is for opening a new window where its parameter include the fxml file in string,
+            //how the window will open (dialog or not),and its title
             //fxml loader is used to get the fxml file wherein it has the codes for the design of the window
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MenuDialog.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("MenuDialog.fxml"));
             //this parent root is for loading all the codes for design
             Parent root1 = (Parent) fxmlLoader.load();
             //this stage is for creating the window
@@ -58,11 +68,28 @@ public class POSModuleController implements Initializable {
             //this makes sure that size is equal to the size of window based on the code
             stage.sizeToScene();
             //this puts the fxml file design in the window
-            stage.setScene(new Scene(root1));  
+            stage.setScene(new Scene(root1));
             //this makes the window viewable to the user
+            
+            MenuDialogController c = (MenuDialogController) fxmlLoader.getController();
+            // Add this too:
+            c.order_tbl = orders_tbl;
+            c.data = this.data;
+            
             stage.show();
+            
         }
     }
+
+    /*static void addRow(String id, String name, String quantity, String cost)
+    {
+        ObservableList<String> row = FXCollections.observableArrayList();
+        row.add(id);
+        row.add(name);
+        row.add(quantity);
+        row.add(cost);
+        data.add(row);
+    }*/
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -72,12 +99,13 @@ public class POSModuleController implements Initializable {
             String SQL1 = "SELECT category_name from category_tbl";
             //ResultSet
             ResultSet rs1 = con.getConnection().createStatement().executeQuery(SQL1);
-            
+
             tbl_data = FXCollections.observableArrayList();
+            data = FXCollections.observableArrayList();
             String SQL2 = "SELECT * from menus_tbl";
             //ResultSet
             ResultSet rs2 = con.getConnection().createStatement().executeQuery(SQL2);
-            
+
             for (int i = 0; i < rs2.getMetaData().getColumnCount(); i++) {
                 final int j = i;
                 TableColumn col = new TableColumn(columns[i]);
@@ -89,15 +117,15 @@ public class POSModuleController implements Initializable {
                         return new SimpleStringProperty(param.getValue().get(j).toString());
                     }
                 });
- 
+
                 menu_tbl.getColumns().addAll(col);
             }
-            
+
             while(rs1.next())
             {
                 Global.category_names.add(rs1.getString(1));
             }
-            
+
             while (rs2.next()) {
                 //Iterate Row
                 ObservableList<String> row = FXCollections.observableArrayList();
@@ -115,10 +143,26 @@ public class POSModuleController implements Initializable {
                 tbl_data.add(row);
             }
             menu_tbl.setItems(tbl_data);
+            
+            String[] column_names = {"ID", "Name", "Quantity", "Cost"};
+            for (int i = 0; i < column_names.length; i++) {
+                final int j = i;
+                TableColumn col = new TableColumn(column_names[i]);
+                col.setStyle(" -fx-font-family: 'Roboto'; -fx-font-size: 14px;");
+                col.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList, String>, ObservableValue<String>>()
+                {
+                    public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList, String> param)
+                    {
+                        return new SimpleStringProperty(param.getValue().get(j).toString());
+                    }
+                });
+                orders_tbl.getColumns().addAll(col);
+            }
+            orders_tbl.setItems(data);
         }
         catch(SQLException e)
         {
         }
-    }    
-    
+    }
+
 }
