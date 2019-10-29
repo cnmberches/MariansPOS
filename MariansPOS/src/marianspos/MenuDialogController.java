@@ -10,23 +10,22 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.stage.Stage;
 
 
-public class MenuDialogController implements Initializable {  
-    public TableView order_tbl;
-    public ObservableList<ObservableList> data;
-
-    @FXML
-    private TextField quantity_tf;
-    
+public class MenuDialogController implements Initializable {     
     @FXML
     private Button cancel_btn, add_btn;
     
-    @FXML 
-    private Label menuName_tf, status_tf , description_tf, price_tf;
+    @FXML
+    private ToggleButton discount_tb; 
+    
+    @FXML
+    private RadioButton senior_rb, pwd_rb;
     
     @FXML
     private void cancel(ActionEvent e)
@@ -40,26 +39,23 @@ public class MenuDialogController implements Initializable {
     }
     
     @FXML
-    private void add(ActionEvent e)
+    private void discount_toggle(ActionEvent e)
     {
-        String cost = String.valueOf(Integer.parseInt(Global.menuClickedItems[3]) * Integer.parseInt(quantity_tf.getText()));
-        ObservableList<String> row = FXCollections.observableArrayList();
-        row.add(Global.menuClickedItems[0]);
-        row.add(Global.menuClickedItems[2]);
-        row.add(quantity_tf.getText());
-        row.add(cost);
-        data.add(row);
-        System.out.print(data.toString());
-        order_tbl.getItems().clear();
-        order_tbl.setItems(data);
+        if(discount_tb.isSelected())
+        {
+            senior_rb.setDisable(false);
+            pwd_rb.setDisable(false);
+        }
+        else
+        {
+            senior_rb.setDisable(true);
+            pwd_rb.setDisable(true);
+        }
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        menuName_tf.setText(Global.menuClickedItems[2]);
-        description_tf.setText(Global.menuClickedItems[4]);
-        price_tf.setText(Global.menuClickedItems[3]);
-        status_tf.setText(Global.menuClickedItems[6]);
+ 
     }    
     
 }

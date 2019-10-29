@@ -13,53 +13,24 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="434.0" prefWidth="601.0" style="-fx-background-color: #ededed; -fx-border-color: #bdbdbd;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="marianspos.MenuDialogController">
+<AnchorPane id="AnchorPane" prefHeight="257.0" prefWidth="601.0" style="-fx-background-color: #ededed; -fx-border-color: #bdbdbd;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="marianspos.MenuDialogController">
     <stylesheets>
         <URL value="@menudialog.css" />
     </stylesheets>
    <children>
-      <Pane layoutX="20.0" layoutY="34.0" prefHeight="182.0" prefWidth="562.0" style="-fx-background-color: #fff; -fx-border-color: #bdbdbd;">
-         <children>
-            <Button id="subtract_btn" layoutX="415.0" layoutY="118.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="38.0" styleClass="subtract_btn">
-               <font>
-                  <Font name="Roboto" size="14.0" />
-               </font>
-            </Button>
-            <Label layoutX="342.0" layoutY="123.0" text="Quantity">
-               <font>
-                  <Font name="Roboto" size="14.0" />
-               </font>
-            </Label>
-            <TextField fx:id="quantity_tf" alignment="CENTER" layoutX="453.0" layoutY="118.0" prefHeight="28.0" prefWidth="38.0" style="-fx-background-radius: 0;" text="1">
-               <font>
-                  <Font name="Roboto" size="14.0" />
-               </font>
-            </TextField>
-            <Button id="add_btn" layoutX="491.0" layoutY="118.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="38.0" styleClass="add_btn">
-               <font>
-                  <Font name="Roboto" size="14.0" />
-               </font>
-            </Button>
-         </children>
-      </Pane>
-      <Button fx:id="add_btn" layoutX="431.0" layoutY="245.0" mnemonicParsing="false" onAction="#add" prefHeight="28.0" prefWidth="151.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Add" textFill="WHITE">
+      <Button fx:id="cancel_btn" layoutX="250.0" layoutY="208.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="151.0" style="-fx-background-color: #f44336; -fx-background-radius: 0;" text="Cancel" textFill="WHITE">
          <font>
             <Font name="Roboto" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="cancel_btn" layoutX="269.0" layoutY="245.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="151.0" style="-fx-background-color: #f44336; -fx-background-radius: 0;" text="Cancel" textFill="WHITE">
-         <font>
-            <Font name="Roboto" size="14.0" />
-         </font>
-      </Button>
-      <Pane layoutX="24.0" layoutY="301.0" prefHeight="159.0" prefWidth="554.0" style="-fx-background-color: #fff; -fx-border-color: #bdbdbd;">
+      <Pane layoutX="24.0" layoutY="25.0" prefHeight="159.0" prefWidth="554.0" style="-fx-background-color: #fff; -fx-border-color: #bdbdbd;">
          <children>
-            <ToggleButton layoutX="14.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-radius: 0;" text="Discount">
+            <ToggleButton fx:id="discount_tb" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#discount_toggle" style="-fx-background-radius: 0;" text="Discount">
                <font>
                   <Font name="Roboto" size="14.0" />
                </font>
             </ToggleButton>
-            <RadioButton layoutX="104.0" layoutY="18.0" mnemonicParsing="false" text="PWD">
+            <RadioButton fx:id="pwd_rb" disable="true" layoutX="104.0" layoutY="18.0" mnemonicParsing="false" text="PWD">
                <font>
                   <Font size="14.0" />
                </font>
@@ -67,7 +38,7 @@
                   <ToggleGroup fx:id="discount_tg" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton layoutX="189.0" layoutY="18.0" mnemonicParsing="false" text="Senior" toggleGroup="$discount_tg">
+            <RadioButton fx:id="senior_rb" disable="true" layoutX="189.0" layoutY="18.0" mnemonicParsing="false" text="Senior" toggleGroup="$discount_tg">
                <font>
                   <Font size="14.0" />
                </font>
@@ -83,12 +54,12 @@
                   <Font name="Roboto" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="169.0" layoutY="79.0" text="10.00">
+            <Label layoutX="169.0" layoutY="79.0" text="00.00">
                <font>
                   <Font name="Roboto" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="169.0" layoutY="131.0" text="10.00">
+            <Label layoutX="169.0" layoutY="131.0" text="00.00">
                <font>
                   <Font name="Roboto" size="17.0" />
                </font>
@@ -98,7 +69,7 @@
                   <Font name="Roboto" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="169.0" layoutY="105.0" text="10.00">
+            <Label layoutX="169.0" layoutY="105.0" text="00.00">
                <font>
                   <Font name="Roboto" size="17.0" />
                </font>
@@ -108,7 +79,7 @@
                   <Font name="Roboto" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="418.0" layoutY="19.0" text="10.00">
+            <Label layoutX="418.0" layoutY="19.0" text="00.00">
                <font>
                   <Font name="Roboto" size="17.0" />
                </font>
@@ -124,17 +95,12 @@
                   <Font name="Roboto" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="418.0" layoutY="78.0" text="10.00">
+            <Label layoutX="418.0" layoutY="78.0" text="00.00">
                <font>
                   <Font name="Roboto" size="17.0" />
                </font>
             </Label>
-            <Button layoutX="346.0" layoutY="107.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="151.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="ORDER" textFill="WHITE">
-               <font>
-                  <Font name="Roboto" size="14.0" />
-               </font>
-            </Button>
-            <RadioButton layoutX="24.0" layoutY="55.0" mnemonicParsing="false" style="-fx-mark-highlight-color: #FF5722; -fx-mark-color: #FF5722;" text="Dine in">
+            <RadioButton layoutX="24.0" layoutY="55.0" mnemonicParsing="false" selected="true" text="Dine in">
                <font>
                   <Font size="14.0" />
                </font>
@@ -149,6 +115,11 @@
             </RadioButton>
          </children>
       </Pane>
+      <Button layoutX="427.0" layoutY="208.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="151.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="ORDER" textFill="WHITE">
+         <font>
+            <Font name="Roboto" size="14.0" />
+         </font>
+      </Button>
    </children>
    <padding>
       <Insets right="-2.0" />
