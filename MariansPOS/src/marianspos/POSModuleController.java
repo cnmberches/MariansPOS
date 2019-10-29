@@ -88,7 +88,14 @@ public class POSModuleController implements Initializable {
     @FXML
     private void confirm(ActionEvent e) throws IOException
     {
-        
+        ObservableList orders = orders_tbl.getItems();
+        int totalCosts = 0;
+        for(int i = 0; i< orders.size();i++)
+        {
+            String [] temp = orders.get(i).toString().replace('[', ' ').replace(']', ' ').split(", ");
+            totalCosts += Integer.valueOf(temp[temp.length-1].replaceAll(" ", ""));
+        }
+        Global.totalCost = totalCosts;
         //this function is for opening a new window where its parameter include the fxml file in string, 
         //how the window will open (dialog or not),and its title 
         //fxml loader is used to get the fxml file wherein it has the codes for the design of the window
@@ -135,17 +142,8 @@ public class POSModuleController implements Initializable {
             //ResultSet
             ResultSet rs1 = con.getConnection().createStatement().executeQuery(SQL1);
             orders_data = FXCollections.observableArrayList();
-            ObservableList<String> rows1 = FXCollections.observableArrayList();
-            rows1.add("aso");
-            rows1.add("100");
-            rows1.add("1");
-            int cost = 3* 500;
-            rows1.add(String.valueOf(cost));
             
             tbl_data = FXCollections.observableArrayList();
-            orders_data.add(rows1);
-            
-            System.out.print(orders_data.get(0));
             
             String SQL2 = "SELECT * from menus_tbl";
             //ResultSet

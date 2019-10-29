@@ -30,7 +30,7 @@
                   <Font name="Roboto" size="14.0" />
                </font>
             </ToggleButton>
-            <RadioButton fx:id="pwd_rb" disable="true" layoutX="104.0" layoutY="18.0" mnemonicParsing="false" text="PWD">
+            <RadioButton fx:id="pwd_rb" disable="true" layoutX="104.0" layoutY="18.0" mnemonicParsing="false" onAction="#radioButtons" text="PWD">
                <font>
                   <Font size="14.0" />
                </font>
@@ -38,7 +38,7 @@
                   <ToggleGroup fx:id="discount_tg" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="senior_rb" disable="true" layoutX="189.0" layoutY="18.0" mnemonicParsing="false" text="Senior" toggleGroup="$discount_tg">
+            <RadioButton fx:id="senior_rb" disable="true" layoutX="189.0" layoutY="18.0" mnemonicParsing="false" onAction="#radioButtons" text="Senior" toggleGroup="$discount_tg">
                <font>
                   <Font size="14.0" />
                </font>
@@ -54,12 +54,12 @@
                   <Font name="Roboto" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="169.0" layoutY="79.0" text="00.00">
+            <Label fx:id="discount_lbl" layoutX="169.0" layoutY="79.0" text="00.00">
                <font>
                   <Font name="Roboto" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="169.0" layoutY="131.0" text="00.00">
+            <Label fx:id="total_lbl" layoutX="169.0" layoutY="131.0" text="00.00">
                <font>
                   <Font name="Roboto" size="17.0" />
                </font>
@@ -69,7 +69,7 @@
                   <Font name="Roboto" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="169.0" layoutY="105.0" text="00.00">
+            <Label fx:id="tax_lbl" layoutX="169.0" layoutY="105.0" text="00.00">
                <font>
                   <Font name="Roboto" size="17.0" />
                </font>
@@ -79,7 +79,7 @@
                   <Font name="Roboto" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="418.0" layoutY="19.0" text="00.00">
+            <Label fx:id="grandTotal_lbl" layoutX="418.0" layoutY="19.0" text="00.00">
                <font>
                   <Font name="Roboto" size="17.0" />
                </font>
@@ -89,13 +89,16 @@
                   <Font name="Roboto" size="14.0" />
                </font>
             </Label>
-            <TextField layoutX="418.0" layoutY="40.0" prefHeight="25.0" prefWidth="126.0" style="-fx-background-radius: 0; -fx-background-insets: 0, 0 0 1 0; -fx-background-color: #000, #fff;" />
+            <TextField fx:id="amountTendered_tf" layoutX="418.0" layoutY="40.0" onKeyReleased="#amountKeyType" prefHeight="25.0" prefWidth="126.0" style="-fx-background-radius: 0; -fx-background-insets: 0, 0 0 1 0; -fx-background-color: #000, #fff;">
+               <font>
+                  <Font name="Roboto" size="14.0" />
+               </font></TextField>
             <Label layoutX="289.0" layoutY="79.0" text="Change">
                <font>
                   <Font name="Roboto" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="418.0" layoutY="78.0" text="00.00">
+            <Label fx:id="change_lbl" layoutX="418.0" layoutY="78.0" text="00.00">
                <font>
                   <Font name="Roboto" size="17.0" />
                </font>
@@ -108,7 +111,7 @@
                   <ToggleGroup fx:id="status_tg" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton layoutX="143.0" layoutY="55.0" mnemonicParsing="false" style="-fx-mark-highlight-color: #FF5722; -fx-mark-color: #FF5722;" text="Take Out" toggleGroup="$status_tg">
+            <RadioButton layoutX="143.0" layoutY="55.0" mnemonicParsing="false" text="Take Out" toggleGroup="$status_tg">
                <font>
                   <Font size="14.0" />
                </font>

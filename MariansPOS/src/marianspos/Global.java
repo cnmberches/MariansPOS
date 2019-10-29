@@ -10,5 +10,6 @@ public class Global
     static String mode;
     static ArrayList<String> category_names = new ArrayList<>();
     static boolean isForAddMenu = true;
+    static int totalCost;
 }
 
