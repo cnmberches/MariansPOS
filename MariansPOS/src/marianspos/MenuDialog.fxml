@@ -103,7 +103,7 @@
                   <Font name="Roboto" size="17.0" />
                </font>
             </Label>
-            <RadioButton layoutX="24.0" layoutY="55.0" mnemonicParsing="false" selected="true" text="Dine in">
+            <RadioButton fx:id="dineIn_rb" layoutX="24.0" layoutY="55.0" mnemonicParsing="false" selected="true" text="Dine in">
                <font>
                   <Font size="14.0" />
                </font>
@@ -111,14 +111,14 @@
                   <ToggleGroup fx:id="status_tg" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton layoutX="143.0" layoutY="55.0" mnemonicParsing="false" text="Take Out" toggleGroup="$status_tg">
+            <RadioButton fx:id="takeOut_rb" layoutX="143.0" layoutY="55.0" mnemonicParsing="false" text="Take Out" toggleGroup="$status_tg">
                <font>
                   <Font size="14.0" />
                </font>
             </RadioButton>
          </children>
       </Pane>
-      <Button layoutX="427.0" layoutY="208.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="151.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="ORDER" textFill="WHITE">
+      <Button layoutX="427.0" layoutY="208.0" mnemonicParsing="false" onAction="#order" prefHeight="28.0" prefWidth="151.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Order" textFill="WHITE">
          <font>
             <Font name="Roboto" size="14.0" />
          </font>

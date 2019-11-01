@@ -56,6 +56,7 @@ public class FXMLDocumentController implements Initializable
                     else
                     {
                         openModule("POSModule.fxml", Modality.WINDOW_MODAL, "Point of Sales");
+                        openModule("POSSecondModule.fxml", Modality.WINDOW_MODAL, "Point of Sales (Kitchen Screen)");
                     }
                 }
                 else
