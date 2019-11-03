@@ -15,21 +15,30 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.print.PrinterJob;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
 public class MenuDialogController implements Initializable {   
     private int total;
+    @FXML
+    private AnchorPane anchorPane;
+    
     @FXML
     private Button cancel_btn, add_btn;
     
@@ -100,20 +109,30 @@ public class MenuDialogController implements Initializable {
             
             ObservableList <String> transaction_id = FXCollections.observableArrayList();
             String orders = "";
+            String receipt = "Marian's Pares, Bulalo, atbp.\n======================================+=================\n"
+                    + String.format("| %-30s | %-4s | %-2s | %-6s |\n", "Name", "Price", "Qty" , "Total");
             for(ObservableList<ObservableList> order: Global.orders)
             {
+                String arrOrder[] = order.subList(0,4).toString().replace('[', ' ').replace(']', ' ').split(", ");
                 orders = order.subList(0,4).toString().replace('[', ' ').replace(']', ' ').replaceAll(",", "")
                         + status + "\n";
+                receipt += String.format("| %-30s | %-5s | %-2s | %-6s |\n", arrOrder[0].trim(), arrOrder[1].trim(), arrOrder[2].trim() ,arrOrder[3].trim());
             }
-  
+            receipt += "\n\n\n";
+            receipt += String.format("| %-30s | %-5s | %-10s | %-6s |\n", "", "", "Tax" ,tax_lbl.getText());
+            receipt += String.format("| %-30s | %-5s | %-10s | %-6s |\n", "", "", "Discount" ,discount_lbl.getText());
+            receipt += String.format("| %-30s | %-5s | %-10s | %-6s |\n", "", "", "Total Cost" ,grandTotal_lbl.getText());
+            receipt += String.format("| %-30s | %-5s | %-10s | %-6s |\n", "", "", "Cash" ,amountTendered_tf.getText());
+            receipt += String.format("| %-30s | %-5s | %-10s | %-6s |\n", "", "", "Change" ,change_lbl.getText());
             //prepared statement is used instead of statement to prevent sql injection
             //first is to get the connection then prepare the statement query
             //name.price,quantity,cost
             PreparedStatement ps = db.getConnection().prepareStatement(sql);
             //this inserts the data by index and its corresponding value
+            String date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(now.getTime());
             ps.setString(1, Global.account_id);
             ps.setString(2, orders);
-            ps.setString(3, new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(now.getTime()));
+            ps.setString(3, date);
             ps.setInt(4, 0);
             //this function is for commanding the system to do the query which inserts a new row/data in database
             ps.executeUpdate();
@@ -127,18 +146,72 @@ public class MenuDialogController implements Initializable {
             }
             db.getConnection().close();
             
-            transaction_id.add(String.valueOf(id) + "-" + new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(now.getTime()));
+            transaction_id.add(String.valueOf(id) + "-" + date);
             POSSecondModuleController.preparing_data.add(transaction_id);
+            
+            TextArea receiptLayout = new TextArea();
+            receiptLayout.setStyle("-fx-font-size: 2");
+            receiptLayout.setText(receipt);
+            
             //this function is use to get the source file of the action event
             final Node source = (Node) e.getSource();
             //this gets the sctive stage or window of the file
             final Stage stage = (Stage) source.getScene().getWindow();
+            anchorPane.getChildren().add(receiptLayout);
+            printOperation(receiptLayout);
+
             //this is for closing the window
             stage.close();
 
         } catch (SQLException ex) {
             //this prints the error message if it encounters problem
             ex.printStackTrace();
+        }
+    }
+    
+    private void print(Node node)
+    {
+        PrinterJob job = PrinterJob.createPrinterJob();
+        if (job != null)
+        {
+            System.out.println("Creating a printer job...");
+            System.out.println(job.jobStatusProperty().asString());
+            boolean printed = job.printPage(node);
+            if (printed)
+            {
+              job.endJob();
+            }
+            else
+            {
+              System.out.println("Printing failed.");
+            }
+        } 
+        else
+        {
+            System.out.println("Could not create a printer job.");
+        }
+    }
+    
+    static void printOperation(TextArea textDocument) {
+        Text extractedText = new Text(textDocument.getText());
+        extractedText.setWrappingWidth(450);
+
+        // use pane to place the text
+        StackPane container = new StackPane(extractedText);
+        container.setAlignment(Pos.TOP_LEFT);
+
+        PrinterJob printerJob = PrinterJob.createPrinterJob();
+
+        if (printerJob != null && printerJob.showPageSetupDialog(textDocument.getScene().getWindow())
+                && printerJob.showPrintDialog(textDocument.getScene().getWindow())) {
+
+            if (printerJob.printPage(container)) {
+                printerJob.endJob();
+            } else {
+                System.out.println("Failed to print");
+            }
+        } else {
+            System.out.println("Canceled");
         }
     }
     
@@ -156,7 +229,7 @@ public class MenuDialogController implements Initializable {
             pwd_rb.setDisable(true);
             pwd_rb.setSelected(false);
             senior_rb.setSelected(false);
-            discount_lbl.setText("00.00");
+            discount_lbl.setText("0");
             grandTotal_lbl.setText(String.valueOf(total));
         }
     }
