@@ -40,13 +40,23 @@ public class AccountManagementModuleController implements Initializable {
      @FXML
     public void clickItem(MouseEvent event) throws IOException
     {
+        //this function is for editing an account when the user clicks the cell
+        //the condition checks first if the clicked cell is not the header
         if(acc_tbl.getSelectionModel().selectedIndexProperty().intValue() != -1)
         {
+            //the global variable is for the condition in opening the register module, we will be
+            //setting it to false because we will just edit the account
             Global.isForAddAccount = false;
+            //this global array variable is for the items clicked.
+            //this will get the id, name, username, password, role, and the date hired.
+            //from the table, it will get a text formatted like [id, name, username, password, role, date hired]
+            //It will first replace all the brackets with space and split it using ', '
+            //then it will be saved as an array
             Global.accMenuClickedItems = acc_tbl.getSelectionModel().selectedItemProperty()
                     .get().toString().replace('[', ' ').replace(']', ' ').split(", ");
             for(int i = 0; i < Global.accMenuClickedItems.length ; i++)
             {
+                //this function is to trim or remove all the spaces at the start and end
                 Global.accMenuClickedItems[i] = Global.accMenuClickedItems[i].trim();
             }
             //Open register module
@@ -62,41 +72,53 @@ public class AccountManagementModuleController implements Initializable {
     
     private void setItems()
     {
+        //first is to connect to the database
         DBConnector con = new DBConnector();
         try
         {
+            //instantiate or create a obsevable list
             tbl_data = FXCollections.observableArrayList();
-            tbl_data = FXCollections.observableArrayList();
+            //it will clear first the items in the observable list
             tbl_data.clear();
+            //remove all columns and items
             acc_tbl.getColumns().clear();
             acc_tbl.getItems().clear();
+            //this string is for getting all the accounts saved in the database
             String SQL2 = "SELECT accounts_id, name, username, role, date_hired from accounts_tbl";
-            //ResultSet
+            //ResultSet for executing the query
             ResultSet rs2 = con.getConnection().createStatement().executeQuery(SQL2);
-            
-            for (int i = 0; i < rs2.getMetaData().getColumnCount(); i++) {
+            //this will create columns
+            for (int i = 0; i < rs2.getMetaData().getColumnCount(); i++)
+            {
                 final int j = i;
+                //create a column
                 TableColumn col = new TableColumn(columns[i]);
                 col.setStyle(" -fx-font-family: 'Roboto'; -fx-font-size: 14px;");
                 col.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList, String>, ObservableValue<String>>()
                 {
                     public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList, String> param)
                     {
+                        //this is for the table header of the table
                         return new SimpleStringProperty(param.getValue().get(j).toString());
                     }
                 });
+                //add the column created
                 acc_tbl.getColumns().addAll(col);
             }
             
+            //this function is to get all the data from teh database
             while (rs2.next()) {
                 //Iterate Row
+                //create a observable list row.
                 ObservableList<String> row = FXCollections.observableArrayList();
                 for (int i = 1; i <= rs2.getMetaData().getColumnCount(); i++) {
-                    //Iterate Column
+                    //Iterate Column and add the data to observable list
                     row.add(rs2.getString(i));
                 }
+                //add the created observable list to the data
                 tbl_data.add(row);
             }
+            //this is for putting all the data to the table
             acc_tbl.setItems(tbl_data);
             acc_tbl.setColumnResizePolicy( TableView.CONSTRAINED_RESIZE_POLICY);
         }
@@ -126,11 +148,5 @@ public class AccountManagementModuleController implements Initializable {
         stage.setScene(new Scene(root1));  
         //this makes the window viewable to the user
         stage.show();
-        if(modal.equals(Modality.WINDOW_MODAL))
-        {
-            //this if statement is to check if the window is showned not as a dialog
-            //if it is WINDOW_MODAL, the main menu or log in module will close from the screen
-            MariansPOS.stage.close();
-        }
     }
 }

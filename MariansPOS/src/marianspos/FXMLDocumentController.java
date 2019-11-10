@@ -35,18 +35,24 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void logIn(ActionEvent event) throws IOException
     {
+        //this first gets the username and password input from the user
         String username = username_textField.getText(), password = password_textField.getText();
-        final String queryCheck = "SELECT * from accounts_tbl WHERE username = ?";
+        //this query is for checking if the username exist in the table
+        String queryCheck = "SELECT * from accounts_tbl WHERE username = ?";
         try
         {
+            //connect to the database
             DBConnector db = new DBConnector();
             PreparedStatement ps = db.getConnection().prepareStatement(queryCheck);
             ps.setString(1, username);
             ResultSet resultSet = ps.executeQuery();
+           
             if(resultSet.next())
             {
+                // if the username exist, check if the username and password is correct
                 if(username.equals(resultSet.getString("username")) && password.equals(resultSet.getString("password")))
                 {
+                    //this gloabl variables is for the data needed to be displayed in the pos module or dashborad module
                     Global.name = resultSet.getString("name");
                     Global.role = resultSet.getString("role");
                     Global.account_id = resultSet.getString("accounts_id");
@@ -60,6 +66,7 @@ public class FXMLDocumentController implements Initializable
                     {
                         openModule("POSModule.fxml", Modality.WINDOW_MODAL, "Point of Sales");
                         openModule("POSSecondModule.fxml", Modality.WINDOW_MODAL, "Point of Sales (Kitchen Screen)");
+                        
                     }
                 }
                 else
@@ -131,6 +138,8 @@ public class FXMLDocumentController implements Initializable
             //this if statement is to check if the window is showned not as a dialog
             //if it is WINDOW_MODAL, the main menu or log in module will close from the screen
             MariansPOS.stage.close();
+            username_textField.clear();
+            password_textField.clear();
         }
     }
 }

@@ -52,11 +52,15 @@ public class InventoryModuleController implements Initializable {
     {
         if (event.getClickCount() == 2) //Checking double click
         {
+            // if the user clicks two times, do the next functions
+            //set the global varible to false because this will just display or edit the menu 
             Global.isForAddMenu = false;
+            //this will get the clicked items and store it to the global array variable
             Global.inventoryClickedItems = menu_tbl.getSelectionModel().selectedItemProperty()
                     .get().toString().replace('[', ' ').replace(']', ' ').split(", ");
             for(int i = 0; i < Global.inventoryClickedItems.length ; i++)
             {
+                //remove all the spaces from start and end
                 Global.inventoryClickedItems[i] = Global.inventoryClickedItems[i].trim();
             }
             //this function is for opening a new window where its parameter include the fxml file in string, 
@@ -110,11 +114,12 @@ public class InventoryModuleController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //connect to the databse
         DBConnector con = new DBConnector();
         try
         {
+            //this function will add all the data and columns to the table
             String SQL1 = "SELECT category_name from category_tbl";
-            //ResultSet
             ResultSet rs1 = con.getConnection().createStatement().executeQuery(SQL1);
             
             tbl_data = FXCollections.observableArrayList();
@@ -124,45 +129,54 @@ public class InventoryModuleController implements Initializable {
             
             for (int i = 0; i < rs2.getMetaData().getColumnCount(); i++) {
                 final int j = i;
+                //create a column
                 TableColumn col = new TableColumn(columns[i]);
                 col.setStyle(" -fx-font-family: 'Roboto'; -fx-font-size: 14px;");
                 col.setCellValueFactory(new Callback<CellDataFeatures<ObservableList, String>, ObservableValue<String>>()
                 {
                     public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param)
                     {
+                        // creat a row for header
                         return new SimpleStringProperty(param.getValue().get(j).toString());
                     }
                 });
- 
+                
+                //add the columns to the table
                 menu_tbl.getColumns().addAll(col);
             }
             
             while(rs1.next())
             {
+                //get the category names
                 Global.category_names.add(rs1.getString(1));
             }
             
             while (rs2.next()) {
                 //Iterate Row
+                //create a observables list where the row is saved
                 ObservableList<String> row = FXCollections.observableArrayList();
                 for (int i = 1; i <= rs2.getMetaData().getColumnCount(); i++) {
                     //Iterate Column
+                    //first is to check if the column in the databse is about categories
                     if(i == 2)
                     {
+                        //get the category using the int or index saved in the databse
                         row.add(Global.category_names.get(rs2.getInt(i)));
                     }
                     else
                     {
+                        //add the row
                         row.add(rs2.getString(i));
                     }
                 }
+                //add the row to the data
                 tbl_data.add(row);
             }
+            //set the items of table 
             menu_tbl.setItems(tbl_data);
         }
         catch(SQLException e)
         {
         }
     }    
-    
 }

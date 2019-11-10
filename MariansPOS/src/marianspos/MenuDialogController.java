@@ -77,14 +77,18 @@ public class MenuDialogController implements Initializable {
     @FXML
     private void radioButtons(ActionEvent e)
     {
+        //cheks if the discount button is selected
         if(pwd_rb.isSelected() || senior_rb.isSelected())
         {
             float discount = total * .20f;
+            //this willl set the value of discount
             discount_lbl.setText(String.valueOf(discount));
+            //automatically minus the discount to total
             grandTotal_lbl.setText(String.valueOf(total-discount));
         }
         else
         {
+            //set the discount to 0 and grand total to the original value
             discount_lbl.setText("00.00");
             grandTotal_lbl.setText(String.valueOf(total));
         }
