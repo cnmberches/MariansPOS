@@ -5,7 +5,9 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,6 +18,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class FXMLDocumentController implements Initializable
 {
@@ -108,6 +111,21 @@ public class FXMLDocumentController implements Initializable
         stage.setScene(new Scene(root1));  
         //this makes the window viewable to the user
         stage.show();
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>()
+        {
+            @Override
+            public void handle(WindowEvent event)
+            {
+                Platform.runLater(new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        MariansPOS.stage.show();
+                    }
+                });
+            }
+        });
         if(modal.equals(Modality.WINDOW_MODAL))
         {
             //this if statement is to check if the window is showned not as a dialog

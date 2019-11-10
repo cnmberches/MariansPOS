@@ -29,27 +29,27 @@ public class DashBoardController implements Initializable {
     
     @FXML
     private void salesReport(ActionEvent event) throws IOException {
-        openModule("SalesReportModule.fxml", Modality.WINDOW_MODAL, "Sales Report");
+        openModule("SalesReportModule.fxml", Modality.APPLICATION_MODAL, "Sales Report");
     }
     
     @FXML
     private void inventoryReport(ActionEvent event) throws IOException {
-        openModule("InventoryModule.fxml", Modality.WINDOW_MODAL, "Inventory");
+        openModule("InventoryModule.fxml", Modality.APPLICATION_MODAL, "Inventory");
     }
     
     @FXML
     private void accountReport(ActionEvent event) throws IOException {
-        openModule("AccountManagementModule.fxml", Modality.WINDOW_MODAL, "Account Manager");
+        openModule("AccountManagementModule.fxml", Modality.APPLICATION_MODAL, "Account Manager");
     }
     
     @FXML
     private void logOut(ActionEvent event)
     {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to log out?" , ButtonType.CANCEL, ButtonType.OK);
-        alert.setTitle("Add Menu");
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to log out?" , ButtonType.NO, ButtonType.YES);
+        alert.setTitle("Log out user?");
         //the show and wait functions waits the user to click between the buttons ok cancel
         alert.showAndWait();
-        if(alert.getResult().equals(ButtonType.OK))
+        if(alert.getResult().equals(ButtonType.YES))
         {
             Node node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();

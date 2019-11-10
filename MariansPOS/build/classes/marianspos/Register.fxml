@@ -67,7 +67,7 @@
                   <Font name="Roboto" size="16.0" />
                </font>
             </Label>
-            <Button id="register_Btn" fx:id="register_Btn" layoutX="20.0" layoutY="542.0" mnemonicParsing="false" onAction="#registerUser" prefHeight="35.0" prefWidth="360.0" styleClass="register_Btn" stylesheets="@register.css" text="Register" textFill="WHITE">
+            <Button id="register_Btn" fx:id="register_Btn" layoutX="20.0" layoutY="542.0" mnemonicParsing="false" onAction="#registerUser" prefHeight="35.0" prefWidth="360.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" styleClass="register_Btn" stylesheets="@register.css" text="Register" textFill="WHITE">
                <font>
                   <Font name="Roboto" size="14.0" />
                </font>

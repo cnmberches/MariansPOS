@@ -48,6 +48,11 @@
                         <Font name="Roboto" size="14.0" />
                      </font>
                   </Label>
+                  <Button layoutX="1164.0" layoutY="13.0" mnemonicParsing="false" onAction="#logOut" prefHeight="28.0" prefWidth="151.0" style="-fx-background-color: #BDBDBD , #EDEDED; -fx-background-radius: 0;" text="Log Out">
+                     <font>
+                        <Font name="Roboto" size="14.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
             <Button fx:id="merienda_btn" layoutX="523.0" layoutY="108.0" mnemonicParsing="false" onAction="#buttonLoadOrder" prefHeight="28.0" prefWidth="79.0" style="-fx-background-color: #FF5722; -fx-background-radius: 0;" text="Merienda" textFill="WHITE">

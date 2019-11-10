@@ -1,5 +1,7 @@
 package marianspos;
 
+import com.sun.javafx.print.Units;
+import java.lang.reflect.Constructor;
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,6 +18,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.print.PageLayout;
+import javafx.print.PageOrientation;
+import javafx.print.Paper;
+import javafx.print.Printer;
 import javafx.print.PrinterJob;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
@@ -87,132 +93,131 @@ public class MenuDialogController implements Initializable {
     @FXML
     private void order(ActionEvent e)
     {
-        Calendar now = Calendar.getInstance();
-        DBConnector db = new DBConnector();
-        String status = "";
-        if(status_tg.getSelectedToggle().equals(dineIn_rb))
+        if(!amountTendered_tf.getText().isEmpty() && Integer.parseInt(amountTendered_tf.getText()) != 0 && Double.parseDouble(change_lbl.getText()) > 0)
         {
-            status = "Dine In";
-        }
-        else
-        {
-            status = "Take Out";
-        }
-        try
-        {
-            //first is to get a connection and create a statement
-            Statement st = db.getConnection().createStatement();
-            //this query is for inserting the values name, username, password, role, and date_hired
-            //it uses "?" in the values for preparedstatement
-            String sql = "INSERT INTO transactions_tbl(accounts_id, orders, date_ordered, transactions_status) "
-                        + "VALUES(?, ?, ?, ?)";
-            
-            ObservableList <String> transaction_id = FXCollections.observableArrayList();
-            String orders = "";
-            String receipt = "Marian's Pares, Bulalo, atbp.\n======================================+=================\n"
-                    + String.format("| %-30s | %-4s | %-2s | %-6s |\n", "Name", "Price", "Qty" , "Total");
-            for(ObservableList<ObservableList> order: Global.orders)
+            Calendar now = Calendar.getInstance();
+            DBConnector db = new DBConnector();
+            String status = "";
+            if(status_tg.getSelectedToggle().equals(dineIn_rb))
             {
-                String arrOrder[] = order.subList(0,4).toString().replace('[', ' ').replace(']', ' ').split(", ");
-                orders = order.subList(0,4).toString().replace('[', ' ').replace(']', ' ').replaceAll(",", "")
-                        + status + "\n";
-                receipt += String.format("| %-30s | %-5s | %-2s | %-6s |\n", arrOrder[0].trim(), arrOrder[1].trim(), arrOrder[2].trim() ,arrOrder[3].trim());
-            }
-            receipt += "\n\n\n";
-            receipt += String.format("| %-30s | %-5s | %-10s | %-6s |\n", "", "", "Tax" ,tax_lbl.getText());
-            receipt += String.format("| %-30s | %-5s | %-10s | %-6s |\n", "", "", "Discount" ,discount_lbl.getText());
-            receipt += String.format("| %-30s | %-5s | %-10s | %-6s |\n", "", "", "Total Cost" ,grandTotal_lbl.getText());
-            receipt += String.format("| %-30s | %-5s | %-10s | %-6s |\n", "", "", "Cash" ,amountTendered_tf.getText());
-            receipt += String.format("| %-30s | %-5s | %-10s | %-6s |\n", "", "", "Change" ,change_lbl.getText());
-            //prepared statement is used instead of statement to prevent sql injection
-            //first is to get the connection then prepare the statement query
-            //name.price,quantity,cost
-            PreparedStatement ps = db.getConnection().prepareStatement(sql);
-            //this inserts the data by index and its corresponding value
-            String date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(now.getTime());
-            ps.setString(1, Global.account_id);
-            ps.setString(2, orders);
-            ps.setString(3, date);
-            ps.setInt(4, 0);
-            //this function is for commanding the system to do the query which inserts a new row/data in database
-            ps.executeUpdate();
-            
-            ResultSet rs2 = db.getConnection().createStatement().executeQuery("SELECT transactions_id FROM transactions_tbl");
-            
-            int id = 0;
-            while(rs2.next())
-            {
-                id = rs2.getInt("transactions_id");
-            }
-            db.getConnection().close();
-            
-            transaction_id.add(String.valueOf(id) + "-" + date);
-            POSSecondModuleController.preparing_data.add(transaction_id);
-            
-            TextArea receiptLayout = new TextArea();
-            receiptLayout.setStyle("-fx-font-size: 2");
-            receiptLayout.setText(receipt);
-            
-            //this function is use to get the source file of the action event
-            final Node source = (Node) e.getSource();
-            //this gets the sctive stage or window of the file
-            final Stage stage = (Stage) source.getScene().getWindow();
-            anchorPane.getChildren().add(receiptLayout);
-            printOperation(receiptLayout);
-
-            //this is for closing the window
-            stage.close();
-
-        } catch (SQLException ex) {
-            //this prints the error message if it encounters problem
-            ex.printStackTrace();
-        }
-    }
-    
-    private void print(Node node)
-    {
-        PrinterJob job = PrinterJob.createPrinterJob();
-        if (job != null)
-        {
-            System.out.println("Creating a printer job...");
-            System.out.println(job.jobStatusProperty().asString());
-            boolean printed = job.printPage(node);
-            if (printed)
-            {
-              job.endJob();
+                status = "Dine In";
             }
             else
             {
-              System.out.println("Printing failed.");
+                status = "Take Out";
             }
-        } 
-        else
-        {
-            System.out.println("Could not create a printer job.");
+            try
+            {
+                TextArea receiptLayout = new TextArea();
+                receiptLayout.setPrefWidth(450);
+                receiptLayout.setStyle("-fx-font-size: 6; -fx-font-family: monospace;");
+                receiptLayout.appendText("Marian's Pares, Bulalo, atbp.\n");
+                receiptLayout.appendText("========================================================\n");
+                //first is to get a connection and create a statement
+                Statement st = db.getConnection().createStatement();
+                //this query is for inserting the values name, username, password, role, and date_hired
+                //it uses "?" in the values for preparedstatement
+                String sql = "INSERT INTO transactions_tbl(accounts_id, orders, date_ordered, transactions_status) "
+                            + "VALUES(?, ?, ?, ?)";
+
+
+                ObservableList <String> transaction_id = FXCollections.observableArrayList();
+                String orders = "";
+
+                for(ObservableList<ObservableList> order: Global.orders)
+                {
+                    String arrOrder[] = order.subList(0,4).toString().replace('[', ' ').replace(']', ' ').split(", ");
+                    orders = order.subList(0,4).toString().replace('[', ' ').replace(']', ' ').replaceAll(",", "")
+                            + status + "\n";
+                    receiptLayout.appendText(String.format("%-30s\n", arrOrder[0].trim()));
+                    receiptLayout.appendText(String.format("%-5s*%-10s|%-6s|\n", arrOrder[1].trim() + ".00", arrOrder[2].trim() ,arrOrder[3].trim()+ ".00"));
+                }
+                receiptLayout.appendText("\n");
+                receiptLayout.appendText(String.format("%30s:%-6s\n", "Tax" ,tax_lbl.getText()));
+                receiptLayout.appendText(String.format("%30s:%-6s\n", "Discount" ,discount_lbl.getText()));
+                receiptLayout.appendText(String.format("%30s:%-6s\n", "Total Cost" ,grandTotal_lbl.getText()));
+                receiptLayout.appendText(String.format("%30s:%-6s\n", "Cash" ,amountTendered_tf.getText()));
+                receiptLayout.appendText(String.format("%30s:%-6s\n", "Change" ,change_lbl.getText()));
+
+                //first is to get the connection then prepare the statement query
+                //name.price,quantity,cost
+                PreparedStatement ps = db.getConnection().prepareStatement(sql);
+                //this inserts the data by index and its corresponding value
+                String date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(now.getTime());
+                ps.setString(1, Global.account_id);
+                ps.setString(2, orders);
+                ps.setString(3, date);
+                ps.setInt(4, 0);
+                //this function is for commanding the system to do the query which inserts a new row/data in database
+                ps.executeUpdate();
+
+                ResultSet rs2 = db.getConnection().createStatement().executeQuery("SELECT transactions_id FROM transactions_tbl");
+
+                int id = 0;
+                while(rs2.next())
+                {
+                    id = rs2.getInt("transactions_id");
+                }
+                db.getConnection().close();
+
+                transaction_id.add(String.valueOf(id) + "-" + date);
+                POSSecondModuleController.preparing_data.add(transaction_id);
+
+                //this function is use to get the source file of the action event
+                final Node source = (Node) e.getSource();
+                //this gets the sctive stage or window of the file
+                final Stage stage = (Stage) source.getScene().getWindow();
+                anchorPane.getChildren().add(receiptLayout);
+                printOperation(receiptLayout);
+
+                //this is for closing the window
+                stage.close();
+
+            } catch (SQLException ex) {
+                //this prints the error message if it encounters problem
+                ex.printStackTrace();
+            }  
         }
+        
     }
     
     static void printOperation(TextArea textDocument) {
-        Text extractedText = new Text(textDocument.getText());
-        extractedText.setWrappingWidth(450);
+        Text extractedText = new Text(textDocument.textProperty().get());
+        extractedText.prefWidth(450);
+        extractedText.setStyle("-fx-font-size: 6; -fx-font-family: monospace;");
 
         // use pane to place the text
         StackPane container = new StackPane(extractedText);
         container.setAlignment(Pos.TOP_LEFT);
 
-        PrinterJob printerJob = PrinterJob.createPrinterJob();
+        try
+        {
+            Constructor<Paper> c = Paper.class.getDeclaredConstructor(String.class,
+                                         double.class, double.class, Units.class);
+            c.setAccessible(true);
+            Paper photo = c.newInstance("55x210", 55, 210, Units.MM);
+            
+            PrinterJob printerJob = PrinterJob.createPrinterJob();
+            Printer printer = javafx.print.Printer.getDefaultPrinter();
+            PageLayout pageLayout = printer.createPageLayout(photo,  PageOrientation.PORTRAIT, 0.0f, 0.0f, 8.0f, 8.0f);
+            printerJob.getJobSettings().setPageLayout(pageLayout);
+            if (printerJob != null) {
 
-        if (printerJob != null && printerJob.showPageSetupDialog(textDocument.getScene().getWindow())
-                && printerJob.showPrintDialog(textDocument.getScene().getWindow())) {
-
-            if (printerJob.printPage(container)) {
-                printerJob.endJob();
+                if (printerJob.printPage(container)) {
+                    printerJob.endJob();
+                } else {
+                    System.out.println("Failed to print");
+                }
             } else {
-                System.out.println("Failed to print");
+                System.out.println("Canceled");
             }
-        } else {
-            System.out.println("Canceled");
         }
+        catch(Exception e)
+        {
+            
+        }
+        
+        
     }
     
     @FXML

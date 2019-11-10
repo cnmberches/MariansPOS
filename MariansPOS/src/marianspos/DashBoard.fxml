@@ -69,7 +69,7 @@
             <Image url="@../icons-images/shield.png" />
          </image>
       </ImageView>
-      <Button layoutX="623.0" layoutY="447.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="151.0" style="-fx-background-color: #BDBDBD , #EDEDED; -fx-background-radius: 0;" text="Log Out">
+      <Button layoutX="623.0" layoutY="447.0" mnemonicParsing="false" onAction="#logOut" prefHeight="28.0" prefWidth="151.0" style="-fx-background-color: #BDBDBD , #EDEDED; -fx-background-radius: 0;" text="Log Out">
          <font>
             <Font name="Roboto" size="14.0" />
          </font>
